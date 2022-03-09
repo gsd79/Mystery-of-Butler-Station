@@ -1,4 +1,7 @@
 // import all models
+const SpaceQs = require('./Space-Qs');
+const StarWarsQs = require('./StarWars-Qs');
+const StarTrekQs = require('./StarTrek-Qs');
 
 //example: const Post = require('./Post');
 
@@ -9,4 +12,8 @@
 //   foreignKey: 'user_id'
 // });
 
-module.exports = {  };
+module.exports = { 
+  SpaceQs,
+  StarTrekQs,
+  StarWarsQs
+};
