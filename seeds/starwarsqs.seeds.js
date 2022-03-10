@@ -3,7 +3,7 @@ const { StarWarsQs } = require('../models');
 const starWarsData = [
   {
     question: "What is Baby Yoda's real name?",
-    choices: 'Grogu, Mando, Mof Gideon, Yoshi',
+    choices: 'Grogu, Mando, Moff Gideon, Yoshi',
     answer: 'Grogu'
   },
   {
