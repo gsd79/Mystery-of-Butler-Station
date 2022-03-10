@@ -57,49 +57,49 @@ const starWarsData = [
     answer: 'Kylo Ren'
   },
   {
-    question: 'q1',
-    choices: 'choice 1, choice 2, choice 3, choice 4',
-    answer: 'choice 1'
+    question: 'What episode is Return of the Jedi?',
+    choices: 'V, VI, IV, VII',
+    answer: 'VI'
   },
   {
-    question: 'q1',
-    choices: 'choice 1, choice 2, choice 3, choice 4',
-    answer: 'choice 1'
+    question: 'Jyn Erso said rebellions are built on what?',
+    choices: 'Rebellion, Friendship, Hope, Love',
+    answer: 'Hope'
   },
   {
-    question: 'q1',
-    choices: 'choice 1, choice 2, choice 3, choice 4',
-    answer: 'choice 1'
+    question: 'Legend describes what as the hidden world of the Sith?',
+    choices: 'Hoth, Exegol, Geonosis, Tatooine',
+    answer: 'Exegol'
   },
   {
-    question: 'q1',
-    choices: 'choice 1, choice 2, choice 3, choice 4',
-    answer: 'choice 1'
+    question: "What was Mando's weapon against Moff Gideon's darksaber?",
+    choices: 'A Beskar Spear, A Beskar Sword, A Beskar Mace, A Beskar Halberd',
+    answer: 'A Beskar Spear'
   },
   {
-    question: 'q1',
-    choices: 'choice 1, choice 2, choice 3, choice 4',
-    answer: 'choice 1'
+    question: "What was Poe Dameron's old job before becoming a pilot?",
+    choices: 'A Spice Runner, A Bartender, A Mining Officer, A Drifter',
+    answer: 'A Spice Runner'
   },
   {
-    question: 'q1',
-    choices: 'choice 1, choice 2, choice 3, choice 4',
-    answer: 'choice 1'
+    question: 'Cobb Vanth had whose armor in The Mandalorian?',
+    choices: 'Boba Fett, Jango Fett, The Mandalorian, Fennec Shand',
+    answer: 'Boba Fett'
   },
   {
-    question: 'q1',
-    choices: 'choice 1, choice 2, choice 3, choice 4',
-    answer: 'choice 1'
+    question: 'C-3PO is mechanically incapable of speaking translations from who?',
+    choices: 'The Dark Ones, Wookiee, Jabbas, The Sith',
+    answer: 'The Sith'
   },
   {
-    question: 'q1',
-    choices: 'choice 1, choice 2, choice 3, choice 4',
-    answer: 'choice 1'
+    question: "Who famously said, These aren't the droids you're looking for?",
+    choices: 'Princess Leia, Obi-Wan, Luke Skywalker, Qui-Gon Jinn',
+    answer: 'Obi-Wan'
   },
   {
-    question: 'q1',
-    choices: 'choice 1, choice 2, choice 3, choice 4',
-    answer: 'choice 1'
+    question: 'Rey and Kylo are a what ___ in the Force?',
+    choices: 'A dryad in the Force, A dyiid in the Force, A dyad in the Force, A duo in the Force',
+    answer: 'A dyad in the Force'
   },
 ];
 
