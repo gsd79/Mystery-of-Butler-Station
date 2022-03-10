@@ -1,7 +1,11 @@
 // import all models
-const SpaceQs = require('./Space-Qs');
-const StarWarsQs = require('./StarWars-Qs');
-const StarTrekQs = require('./StarTrek-Qs');
+const Categories = require('./Categories');
+const Leaderboard = require('./Leaderboard');
+const Level = require('./Level');
+const Login = require('./Login');
+const Progress = require('./Progress');
+const Questions = require('./Questions');
+const User = require('./User');
 
 //example: const Post = require('./Post');
 
@@ -13,7 +17,11 @@ const StarTrekQs = require('./StarTrek-Qs');
 // });
 
 module.exports = { 
-  SpaceQs,
-  StarTrekQs,
-  StarWarsQs
+  Categories,
+  Leaderboard,
+  Level,
+  Login,
+  Progress,
+  Questions,
+  User
 };

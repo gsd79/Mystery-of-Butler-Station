@@ -2,9 +2,9 @@ const { Model, DataTypes } = require('sequelize');
 
 const sequelize = require('../config/connection');
 
-class SpaceQs extends Model {}
+class User extends Model {}
 
-SpaceQs.init(
+User.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -12,16 +12,24 @@ SpaceQs.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    question: {
+    firstName: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    choices: {
+    lastName: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
-    answer: {
+    email: {
       type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+      validate: {
+        isEmail: true
+      }
+    },
+    age: {
+      type: DataTypes.INTEGER,
       allowNull: false
     }
   },
@@ -30,8 +38,8 @@ SpaceQs.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'spaceqs',
+    modelName: 'user',
   }
 );
 
-module.exports = SpaceQs;
+module.exports = User;

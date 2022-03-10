@@ -2,9 +2,9 @@ const { Model, DataTypes } = require('sequelize');
 
 const sequelize = require('../config/connection');
 
-class StarTrekQs extends Model {}
+class Level extends Model {}
 
-StarTrekQs.init(
+Level.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -12,17 +12,13 @@ StarTrekQs.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    question: {
+    level: { //TODO should this be category_id instead? ref category?
       type: DataTypes.STRING,
       allowNull: false,
     },
-    choices: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    answer: {
-      type: DataTypes.STRING,
-      allowNull: false
+    questions: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
     }
   },
   {
@@ -30,8 +26,8 @@ StarTrekQs.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'startrekqs',
+    modelName: 'level',
   }
 );
 
-module.exports = StarTrekQs;
+module.exports = Level;

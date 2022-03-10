@@ -2,9 +2,9 @@ const { Model, DataTypes } = require('sequelize');
 
 const sequelize = require('../config/connection');
 
-class StarWarsQs extends Model {}
+class Questions extends Model {}
 
-StarWarsQs.init(
+Questions.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -23,15 +23,22 @@ StarWarsQs.init(
     answer: {
       type: DataTypes.STRING,
       allowNull: false
-    }
+    },
+    category_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'categories',
+        key: 'id'
+      }
+    },
   },
   {
     sequelize,
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'starwarsqs',
+    modelName: 'questions',
   }
 );
 
-module.exports = StarWarsQs;
+module.exports = Questions;
