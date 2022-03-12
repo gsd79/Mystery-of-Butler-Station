@@ -172,3 +172,10 @@ login-form-field {
         clip: rect(95px, 1200px, 75px, 0)
     }
 }
+
+.signup-link {
+    font-size: 20px;
+    padding-top: 100px;
+    text-align:center;
+    font-size: 30px;
+}
