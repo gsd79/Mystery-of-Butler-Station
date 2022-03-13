@@ -9,19 +9,15 @@
 </head>
 
 <body>
-
-    <h2>Modal Signup Form</h2>
-
-    <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Sign Up</button>
-
-    <div id="id01" class="modal">
-        <span onclick="document.getElementById('id01').style.display='none'" class="close"
-            title="Close Modal">&times;</span>
-        <form class="modal-content" action="/action_page.php">
+        <form class="modal-content">
             <div class="container" style="color: white"; style="font-size: 20";>
                 <h1>Sign Up</h1>
                 <p>Please fill in this form to create an account.</p>
                 <hr>
+                <label for="name"><b>Your Name</b></label>
+                <input type="text" placeholder="Enter name" id="name" required>
+
+
                 <label for="email"><b>Email</b></label>
                 <input type="text" placeholder="Enter Email" name="email" required>
 

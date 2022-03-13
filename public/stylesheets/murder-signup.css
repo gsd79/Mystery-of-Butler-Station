@@ -1,5 +1,6 @@
    body {
        font-family: monospace;
+       background-image: url(../images/image-from-rawpixel-id-2363304-original.jpg);
    }
 
    * {
@@ -10,12 +11,14 @@
    input[type=text],
    input[type=password] {
        width: 100%;
-       padding: 15px;;
+       padding: 15px;
+       ;
        margin: 5px 0 22px 0;
        color: white;
        display: inline-block;
        border: none;
-       background-image: url(../images/image-from-rawpixel-id-2363304-original.jpg);
+
+
    }
 
    /* Add a background color when the inputs get focus */
@@ -23,7 +26,7 @@
    input[type=password]:focus {
        background-color: #ddd;
        outline: none;
-      
+
    }
 
    /* Set a style for all buttons */
@@ -82,12 +85,11 @@
 
    /* Modal Content/Box */
    .modal-content {
-       background-image: url(../images/image-from-rawpixel-id-2363304-original.jpg);
-       margin: 5% auto 15% auto;
+       background: rgba(0, 0, 0, 0.5);
+        margin: 5% auto 15% auto;
        /* 5% from the top, 15% from the bottom and centered */
        border: 1px solid #888;
-       width: 80%;
-       /* Could be more or less, depending on screen size */
+       width: 500px;
    }
 
    /* Style the horizontal ruler */
@@ -127,7 +129,3 @@
            width: 100%;
        }
    }
-
-  
-
-   
