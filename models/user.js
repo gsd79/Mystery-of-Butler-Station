@@ -10,6 +10,8 @@ class User extends Model {
   }
 }
 
+// TODO: SHOULD WE CREATE CHAR MODEL AND REF IN USER TABLE?
+// HAVE A SEP SCREEN FOR CHAR SELECTION
 // create fields/columns for User model
 User.init(
   {
@@ -19,7 +21,7 @@ User.init(
       primaryKey: true,
       autoIncrement: true
     },
-    username: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false
     },
@@ -37,7 +39,15 @@ User.init(
       validate: {
         len: [4]
       }
-    }
+    },
+    gender: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    age: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
   },
   {
     hooks: {

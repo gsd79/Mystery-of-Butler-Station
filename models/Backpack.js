@@ -2,9 +2,9 @@ const { Model, DataTypes } = require('sequelize');
 
 const sequelize = require('../config/connection');
 
-class Progress extends Model {}
+class Backpack extends Model {}
 
-Progress.init(
+Backpack.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -19,27 +19,19 @@ Progress.init(
         key: 'id'
       }
     },
-    level: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'level',
-        key: 'id'
-      }
-    },
-    question: {
-      type: DataTypes.INTEGER,
+    item: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
-    //TODO: CORRECT QUESTIONS - INTEGER ALLOW NULL?
-    //TODO createdAt and updatedAt... i remember Matt saying something about these... Maybe Qing can help? how to use and why?
+    
   },
   {
     sequelize,
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'progress',
+    modelName: 'backpack',
   }
 );
 
-module.exports = Progress;
+module.exports = Backpack;
