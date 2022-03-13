@@ -1,4 +1,3 @@
-
 //need to work on scrolling, finish Spaceship layout, get doors installed.
 
 (function () {
@@ -39,10 +38,15 @@
 
     render: function () {
       for (let index = game.world.map.length - 1; index > -1; --index) {
-        this.buffer.fillStyle =
-          game.world.map[index] > 0
-            ? "#0099" + game.world.map[index] + "f"
-            : "#303840";
+        if (game.world.map[index] > 0 && game.world.map[index] !== 9) {
+          this.buffer.fillStyle = "#0099" + game.world.map[index] + "f";
+        } else if (game.world.map[index] === 9) {
+          console.log("WHat is this value ", game.world.map[index]);
+          this.buffer.fillStyle = "#694929";
+        } else {
+          this.buffer.fillStyle = "#303840";
+        }
+
         this.buffer.fillRect(
           (index % game.world.columns) * game.world.tile_size,
           Math.floor(index / game.world.columns) * game.world.tile_size,
@@ -57,6 +61,34 @@
         game.player.y,
         game.player.width,
         game.player.height
+      );
+
+      this.context.drawImage(
+        this.buffer.canvas,
+        0,
+        0,
+        this.buffer.canvas.width,
+        this.buffer.canvas.height,
+        0,
+        0,
+        this.context.canvas.width,
+        this.context.canvas.height
+      );
+
+      this.buffer.fillStyle = game.player.color;
+      this.buffer.fillRect(
+        game.player.x,
+        game.player.y,
+        game.player.width,
+        game.player.height
+      );
+
+      this.buffer.fillStyle = game.npc.color;
+      this.buffer.fillRect(
+        game.npc.x,
+        game.npc.y,
+        game.npc.width,
+        game.npc.height
       );
 
       this.context.drawImage(
@@ -95,7 +127,7 @@
     to use in collision detection. It is used to calculate the vector used to determine
     if an object is entering into a collision tile and from what side. */
     player: {
-      color: "#ff9900",//player is orange
+      color: "#ff9900", //player is orange
       height: 5,
       old_x: 160, // these are what you should take note of. Don't worry, it's useful
       old_y: 160, // to keep track of old positions for many physics methods. These aren't one trick pony's.
@@ -104,8 +136,6 @@
       width: 5,
       x: 160 - 16,
       y: 100 - 16,
-
-     
 
       // These functions just make it easy to read the collision code
       get bottom() {
@@ -135,44 +165,41 @@
     },
 
     npc: {
-        color: "#0000FF",//npc is blue
-        height: 5,
-        old_x: 0, // these are what you should take note of. Don't worry, it's useful
-        old_y: 0, // to keep track of old positions for many physics methods. These aren't one trick pony's.
-        velocity_x: 0,
-        velocity_y: 0,
-        width: 5,
-        x: 120 - 16,
-        y: 100 - 16,
-  
-       
-  
-        // These functions just make it easy to read the collision code
-        get bottom() {
-          return this.y + this.height;
-        },
-        get oldBottom() {
-          return this.old_y + this.height;
-        },
-        get left() {
-          return this.x;
-        }, // kind of pointless, but used
-        get oldLeft() {
-          return this.old_x;
-        }, // to help visualize the collision methods
-        get right() {
-          return this.x + this.width;
-        },
-        get oldRight() {
-          return this.old_x + this.width;
-        },
-        get top() {
-          return this.y;
-        }, // equally pointless as left side calculations
-        get oldTop() {
-          return this.old_y;
-        },
-        
+      color: "#0000FF", //npc is blue
+      height: 5,
+      old_x: 0, // these are what you should take note of. Don't worry, it's useful
+      old_y: 0, // to keep track of old positions for many physics methods. These aren't one trick pony's.
+      velocity_x: 0,
+      velocity_y: 0,
+      width: 5,
+      x: 120 - 16,
+      y: 100 - 16,
+
+      // These functions just make it easy to read the collision code
+      get bottom() {
+        return this.y + this.height;
+      },
+      get oldBottom() {
+        return this.old_y + this.height;
+      },
+      get left() {
+        return this.x;
+      }, // kind of pointless, but used
+      get oldLeft() {
+        return this.old_x;
+      }, // to help visualize the collision methods
+      get right() {
+        return this.x + this.width;
+      },
+      get oldRight() {
+        return this.old_x + this.width;
+      },
+      get top() {
+        return this.y;
+      }, // equally pointless as left side calculations
+      get oldTop() {
+        return this.old_y;
+      },
     },
 
     world: {
@@ -183,7 +210,7 @@
       map: [
         1, 1, 1, 1, 5, 5, 5, 5, 5, 5, 5, 5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
         2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
-        2, 0, 0, 0, 5, 5, 0, 5, 5, 0, 0, 5, 0, 5, 5, 5, 5, 0, 0, 5, 5, 5, 5, 3,
+        2, 0, 0, 0, 5, 5, 9, 5, 5, 9, 9, 5, 0, 5, 5, 5, 5, 0, 0, 5, 5, 5, 5, 3,
         2, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 3,
         2, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 3,
         5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 3,
@@ -207,13 +234,13 @@
         4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,
       ],
 
-    // 1s are ceiling tiles
-    // 2s and 3s are left and right wall tiles
-    // 5 is a solid block/box tile
-    // 4 is a floor tile
-    // the routing functions below with matching numbers
-    // represent these tiles and route their values to
-    // the collision methods you might expect based on their names
+      // 1s are ceiling tiles
+      // 2s and 3s are left and right wall tiles
+      // 5 is a solid block/box tile
+      // 4 is a floor tile
+      // the routing functions below with matching numbers
+      // represent these tiles and route their values to
+      // the collision methods you might expect based on their names
     },
 
     /* This object is responsible for getting the collision methods that match
@@ -359,6 +386,8 @@
       // Get controller input and move that player object!
       if (controller.down) {
         game.player.velocity_y += 0.25;
+        console.log("Player x-axis", game.player.x);
+        console.log("Player y-axis", game.player.y);
       }
 
       if (controller.left) {
@@ -371,6 +400,8 @@
 
       if (controller.up) {
         game.player.velocity_y -= 0.25;
+        console.log("Player x-axis", game.player.x);
+        console.log("Player y-axis", game.player.y);
       }
 
       // Update the player object:
