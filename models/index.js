@@ -6,6 +6,7 @@ const Login = require('./Login');
 const Progress = require('./Progress');
 const Questions = require('./Questions');
 const User = require('./User');
+const Backpack = require('./Backpack');
 
 //example: const Post = require('./Post');
 
@@ -23,5 +24,6 @@ module.exports = {
   Login,
   Progress,
   Questions,
-  User
+  User,
+  Backpack,
 };
