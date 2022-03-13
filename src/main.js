@@ -105,6 +105,8 @@
       x: 160 - 16,
       y: 100 - 16,
 
+     
+
       // These functions just make it easy to read the collision code
       get bottom() {
         return this.y + this.height;
@@ -130,6 +132,47 @@
       get oldTop() {
         return this.old_y;
       },
+    },
+
+    npc: {
+        color: "#0000FF",//npc is blue
+        height: 5,
+        old_x: 0, // these are what you should take note of. Don't worry, it's useful
+        old_y: 0, // to keep track of old positions for many physics methods. These aren't one trick pony's.
+        velocity_x: 0,
+        velocity_y: 0,
+        width: 5,
+        x: 120 - 16,
+        y: 100 - 16,
+  
+       
+  
+        // These functions just make it easy to read the collision code
+        get bottom() {
+          return this.y + this.height;
+        },
+        get oldBottom() {
+          return this.old_y + this.height;
+        },
+        get left() {
+          return this.x;
+        }, // kind of pointless, but used
+        get oldLeft() {
+          return this.old_x;
+        }, // to help visualize the collision methods
+        get right() {
+          return this.x + this.width;
+        },
+        get oldRight() {
+          return this.old_x + this.width;
+        },
+        get top() {
+          return this.y;
+        }, // equally pointless as left side calculations
+        get oldTop() {
+          return this.old_y;
+        },
+        
     },
 
     world: {
