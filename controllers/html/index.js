@@ -6,7 +6,7 @@ const loginRoutes = require('./login-routes');
 
 
 
-router.use('/', homeRoutes);
-router.use('/', loginRoutes);
+// router.use('./', homeRoutes);
+// router.use('./', loginRoutes);
 
 module.exports = router;
