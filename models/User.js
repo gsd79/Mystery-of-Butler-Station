@@ -1,4 +1,4 @@
-const { Model, DataTypes } = require('sequelize');
+const { Model, DataTypes, Sequelize } = require('sequelize');
 const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
 
@@ -10,8 +10,6 @@ class User extends Model {
   }
 }
 
-// TODO: SHOULD WE CREATE CHAR MODEL AND REF IN USER TABLE?
-// HAVE A SEP SCREEN FOR CHAR SELECTION
 // create fields/columns for User model
 User.init(
   {
@@ -48,6 +46,17 @@ User.init(
       type: DataTypes.INTEGER,
       allowNull: false
     },
+    character_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: 'character',
+        key: 'id'
+      }
+    },
+    createdAt: {
+      type: Sequelize.DATE
+    }
   },
   {
     hooks: {

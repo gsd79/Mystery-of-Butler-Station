@@ -1,11 +1,10 @@
-// const router = require('express').Router();
+const router = require('express').Router();
+const backpackRoutes = require('./backpack');
+const questionsRoutes = require('./questions');
+const userRoutes = require('./user-routes');
 
-// const userRoutes = require('./user-routes.js');
-// const postRoutes = require('./post-routes');
-// const commentRoutes = require('./comment-routes');
+router.use('/backpack', backpackRoutes);
+router.use('/questions', questionsRoutes);
+router.use('/user-routes', userRoutes);
 
-// router.use('/users', userRoutes);
-// router.use('/posts', postRoutes);
-// router.use('/comments', commentRoutes);
-
-// module.exports = router;
+module.exports = router;
