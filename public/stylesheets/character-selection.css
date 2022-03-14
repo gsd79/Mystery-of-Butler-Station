@@ -5,22 +5,29 @@
 body {
     background-image: url(../images/image-from-rawpixel-id-2363304-original.jpg);
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
+    
     overflow: hidden;
     margin: 0;
+}
+
+header {
+    margin: 0 auto;
+    padding-top: 20px;
+
 }
 
 
 .container {
     display: flex;
-    width: 90vw;
+    width: 100%;
+    align-items:center;
+    flex-flow:row wrap;
+    
 
 }
 
 .panel {
+   background-color: pink;
     background-size: auto 100%;
     background-position: center;
     background-repeat: no-repeat;
@@ -30,10 +37,17 @@ body {
     cursor: pointer;
     flex: 0.5;
     margin: 10px;
+    padding-bottom: 20px;
     position: relative;
     transition: flex 0.7s ease-in;
+    display:flex;
+    flex-direction: column;
+}
 
-
+.panel img {
+   object-fit: scale-down;
+   height: 500px;
+;
 }
 
 .panel h3 {
@@ -41,9 +55,8 @@ body {
     position: absolute;
     bottom: 20px;
     left: 150px;
-    margin: 0;
+    margin: 0 auto;
     opacity: 1;
-    padding-top: 300px;
     transform: skew(10deg, 10deg)
 }
 
@@ -68,7 +81,7 @@ body {
     position: relative;
     color: #fff;
     text-align: center;
-    font-size: 7rem;
+    font-size: 2rem;
     max-width: 1200px;
     margin: 0 auto;
 }
