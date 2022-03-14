@@ -30,7 +30,7 @@ Questions.init(
         model: 'categories',
         key: 'id'
       }
-    },
+    }
   },
   {
     sequelize,

@@ -1,10 +1,11 @@
+//four characters. when pick. update user_character_id
 const { Model, DataTypes } = require('sequelize');
 
 const sequelize = require('../config/connection');
 
-class Level extends Model {}
+class Character extends Model {}
 
-Level.init(
+Character.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -12,7 +13,7 @@ Level.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    level: { 
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
     }
@@ -22,8 +23,8 @@ Level.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'level',
+    modelName: 'character',
   }
 );
 
-module.exports = Level;
+module.exports = Character;

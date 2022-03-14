@@ -45,23 +45,38 @@ router.post('/login', (req, res) => {
 
 // TODO: WHEN PLAYER CHOOSES POST WHICH CHARACTER TO CHARACTER MODEL -- LINKED TO USER
 // TODO: PUT ROUTE TO NEW GAME/RESET PROGRESS MODEL?
+const {User} = require('../../models');
 
-// // router.post('/', (req, res) => {
-// //     // check the session
-// //     if (req.session) {
-// //       Comment.create({
-// //         comment_text: req.body.comment_text,
-// //         post_id: req.body.post_id,
-// //         // use the id from the session
-// //         user_id: req.session.user_id
-// //       })
-// //         .then(dbCommentData => res.json(dbCommentData))
-// //         .catch(err => {
-// //           console.log(err);
-// //           res.status(400).json(err);
-// //         });
-// //     }
-// //   });
+//GET all users
+router.get('/', (req, res) => {
+  User.findAll({
+    
+  })
+    .then(dbUserData => res.json(dbUserData))
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+// TODO: WHEN PLAYER CHOOSES POST WHICH CHARACTER TO CHARACTER MODEL -- LINKED TO USER
+
+//i dont think this is right
+router.post('/:id', (req, res) => {
+    // check the session
+    if (req.session) {
+      User.update({
+        character_id: req.body.character_id,
+      })
+        .then(dbUserData => res.json(dbUserData))
+        .catch(err => {
+          console.log(err);
+          res.status(400).json(err);
+        });
+    }
+  });
+
+// TODO: PUT ROUTE TO NEW GAME/RESET PROGRESS MODEL?
 // router.post('/', (req, res) => {
 //     // expects {username: 'Lernantino', email: 'lernantino@gmail.com', password: 'password1234'}
 //     User.create({

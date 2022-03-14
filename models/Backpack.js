@@ -1,4 +1,4 @@
-const { Model, DataTypes } = require('sequelize');
+const { Model, DataTypes, Sequelize } = require('sequelize');
 
 const sequelize = require('../config/connection');
 
@@ -20,10 +20,11 @@ Backpack.init(
       }
     },
     item: {
-      type: DataTypes.STRING,
-      allowNull: false,
+      type: DataTypes.BOOLEAN
     },
-    
+    createdAt: {
+      type: Sequelize.DATE
+    }
   },
   {
     sequelize,
