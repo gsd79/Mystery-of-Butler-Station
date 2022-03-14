@@ -535,7 +535,7 @@
     loop: function () {
       // Get controller input and move that player object!
       if (controller.down) {
-        game.player.velocity_y += 0.25;
+        game.player.velocity_y += 0.15;
         console.log("Player x-axis", game.player.x);
         console.log("Player y-axis", game.player.y);
       }
