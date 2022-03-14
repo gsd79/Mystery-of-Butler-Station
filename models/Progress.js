@@ -1,4 +1,4 @@
-const { Model, DataTypes } = require('sequelize');
+const { Model, DataTypes, Sequelize } = require('sequelize');
 
 const sequelize = require('../config/connection');
 
@@ -19,19 +19,27 @@ Progress.init(
         key: 'id'
       }
     },
-    level: {
+    level_id: {
       type: DataTypes.INTEGER,
       references: {
         model: 'level',
         key: 'id'
       }
     },
-    question: {
+    question_id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      references: {
+        model: 'questions',
+        key: 'id'
+      }
     },
-    //TODO: CORRECT QUESTIONS - INTEGER ALLOW NULL?
-    //TODO createdAt and updatedAt... i remember Matt saying something about these... Maybe Qing can help? how to use and why?
+    isAnswerCorrect: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false
+    },
+    createdAt: {
+      type: Sequelize.DATE
+    }
   },
   {
     sequelize,

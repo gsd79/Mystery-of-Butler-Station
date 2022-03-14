@@ -2,11 +2,12 @@
 const Categories = require('./Categories');
 const Leaderboard = require('./Leaderboard');
 const Level = require('./Level');
-const Login = require('./Login');
+// const Login = require('./Login');
 const Progress = require('./Progress');
 const Questions = require('./Questions');
 const User = require('./User');
 const Backpack = require('./Backpack');
+const Character = require('./Character')
 
 //example: const Post = require('./Post');
 
@@ -21,9 +22,10 @@ module.exports = {
   Categories,
   Leaderboard,
   Level,
-  Login,
+  // Login,
   Progress,
   Questions,
   User,
   Backpack,
+  Character
 };
