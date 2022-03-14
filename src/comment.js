@@ -435,11 +435,9 @@
         }
         this.bottomCollision(object, row); // No need to early out on the last check.
       },
-      9: function (object, row) {
-        if (this.topCollision(object, row)) {
-          return;
-        }
-        this.bottomCollision(object, row); 
+      9: function (object, row, column) {
+        // The player hits the bottom of ceiling tiles.
+        this.topCollision(object, row);
       },
 
       /* Here are the narrow phase collision detection and response functions.
@@ -531,7 +529,6 @@
 
         return false;
       },
-
     },
 
     // The game loop:
