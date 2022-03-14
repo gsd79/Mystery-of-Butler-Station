@@ -2,9 +2,9 @@ const { Model, DataTypes } = require('sequelize');
 
 const sequelize = require('../config/connection');
 
-class StarTrekQs extends Model {}
+class Leaderboard extends Model {}
 
-StarTrekQs.init(
+Leaderboard.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -12,17 +12,16 @@ StarTrekQs.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    question: {
-      type: DataTypes.STRING,
+    user_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'user',
+        key: 'id'
+      }
+    },
+    score: {
+      type: DataTypes.INTEGER,
       allowNull: false,
-    },
-    choices: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    answer: {
-      type: DataTypes.STRING,
-      allowNull: false
     }
   },
   {
@@ -30,8 +29,8 @@ StarTrekQs.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'startrekqs',
+    modelName: 'leaderboard',
   }
 );
 
-module.exports = StarTrekQs;
+module.exports = Leaderboard;
