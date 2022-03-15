@@ -1,0 +1,168 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url(../images/image-from-rawpixel-id-2363304-original.jpg);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    
+    overflow: hidden;
+    margin: 0;
+}
+
+header {
+    margin: 0 auto;
+    padding-top: 20px;
+    font-size: 150px;
+
+}
+
+
+.container {
+    display: flex;
+    width: 100%;
+    align-items:center;
+    flex-flow:row wrap;
+    
+
+}
+
+.panel {
+  
+    background-size: auto 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 80vh;
+    border-radius: 50px;
+    color: #ffff;
+    cursor: pointer;
+    flex: 0.5;
+    margin: 10px;
+    padding-bottom: 20px;
+    position: relative;
+    transition: flex 0.7s ease-in;
+    display:flex;
+    flex-direction: column;
+}
+
+.panel img {
+   object-fit: scale-down;
+   height: 500px;
+;
+}
+
+.panel h3 {
+    font-size: 50px;
+    position: absolute;
+    bottom: 20px;
+  
+    margin: 0 auto;
+    opacity: 1;
+    transform: skew(10deg, 10deg)
+}
+
+.panel.active {
+    flex: 2;
+}
+
+.panel.active h3 {
+    opacity: 1;
+    transition: opacity 0.3s ease-in 0.4s;
+}
+
+@media(max-width: 480px) {
+    .container {
+        width: 100vw;
+    }
+
+}
+
+#title {
+    font-family: arial;
+    position: relative;
+    color: #fff;
+    text-align: center;
+    font-size: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.title::before,
+.title::after {
+    content: attr(data-text);
+    position:absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.title::before {
+    left: 2px;
+    clip: rect(79px, 1200px, 86px, 0);
+    text-shadow: -1px 0 red;
+    background: #000;
+    animation: title-anim-2 1s infinite linear alternate-reverse;
+}
+
+.title::after {
+    /* variation */
+    left: -2px;
+    clip: rect(79px, 1200px, 86px, 0);
+    text-shadow: -1px 0 blue;
+    background: #000;
+    animation: title-anim-1 1s infinite linear alternate-reverse;
+    animation-delay: -1s;
+}
+
+@keyframes title-anim-1 {
+    0% {
+        clip: rect(20px, 1200px, 76px, 0);
+    }
+
+    20% {
+        clip: rect(19px, 1200px, 16px, 0);
+    }
+
+    40% {
+        clip: rect(16px, 1200px, 3px, 0);
+    }
+
+    60% {
+        clip: rect(62px, 1200px, 78px, 0);
+    }
+
+    80% {
+        clip: rect(25px, 1200px, 13px, 0);
+    }
+
+    100% {
+        clip: rect(53px, 1200px, 86px, 0);
+    }
+}
+
+@keyframes title-anim-2 {
+    0% {
+        clip: rect(79px, 1200px, 86px, 0);
+    }
+
+    20% {
+        clip: rect(20px, 1200px, 30px, 0)
+    }
+
+    40% {
+        clip: rect(25px, 1200px, 5px, 0)
+    }
+
+    60% {
+        clip: rect(65px, 1200px, 85px, 0)
+    }
+
+    80% {
+        clip: rect(120px, 1200px, 145px, 0)
+    }
+
+    100% {
+        clip: rect(95px, 1200px, 75px, 0)
+    }
+}
