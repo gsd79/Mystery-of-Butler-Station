@@ -3,6 +3,7 @@ const loginButton = document.getElementById("login-form-submit");
 const loginErrorMsg = document.getElementById("login-error-message");
 
 loginButton.addEventListener("click", (e) => { 
+    console.log("login")
     e.preventDefault();
 
     const username = loginForm.username.value;
@@ -12,6 +13,7 @@ loginButton.addEventListener("click", (e) => {
         alert("You are now logged in!");
         location.reload();
     } else {
+        alert("You are not logged in!");
         loginErrorMessage.style.opacity =1;
     }
 })

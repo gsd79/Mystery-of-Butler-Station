@@ -1,6 +1,10 @@
 const path = require('path');
 const router = require('express').Router();
 
+router.get('/', (req, res) => {
+  res.render('homepage', {});
+});
+
 router.get('/mystery-of-butler-station', (req, res) => {                                                                            
   res.sendFile(path.join(__dirname, '../../public/mystery-of-butler-station.html'));
 });
@@ -17,8 +21,8 @@ router.get('/character-creation', (req, res) => {
   res.sendFile(path.join(__dirname, '../../public/character-creation.html'));
 });
 
-router.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../../public/login.html'));
-});
+// router.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, '../../public/login.html'));
+// });
 
 module.exports = router;
