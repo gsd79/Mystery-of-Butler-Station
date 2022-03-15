@@ -7,6 +7,7 @@ const helpers = require('./utils/helpers');
 const hbs = exphbs.create({ helpers });
 const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const cors = require('cors')
 
 const sess = {
   secret: 'Super secret secret',
@@ -21,6 +22,7 @@ const sess = {
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+app.use(cors);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
