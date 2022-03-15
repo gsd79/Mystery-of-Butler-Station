@@ -2,9 +2,9 @@ const { Model, DataTypes, Sequelize } = require('sequelize');
 
 const sequelize = require('../config/connection');
 
-class Progress extends Model {}
+class Backpack extends Model {}
 
-Progress.init(
+Backpack.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -19,23 +19,8 @@ Progress.init(
         key: 'id'
       }
     },
-    level_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'level',
-        key: 'id'
-      }
-    },
-    question_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'questions',
-        key: 'id'
-      }
-    },
-    isAnswerCorrect: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false
+    item: {
+      type: DataTypes.BOOLEAN
     },
     createdAt: {
       type: Sequelize.DATE
@@ -46,8 +31,8 @@ Progress.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'progress',
+    modelName: 'backpack',
   }
 );
 
-module.exports = Progress;
+module.exports = Backpack;

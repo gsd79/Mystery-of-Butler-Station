@@ -1,4 +1,4 @@
-const { Model, DataTypes } = require('sequelize');
+const { Model, DataTypes, Sequelize } = require('sequelize');
 
 const sequelize = require('../config/connection');
 
@@ -22,6 +22,9 @@ Leaderboard.init(
     score: {
       type: DataTypes.INTEGER,
       allowNull: false,
+    },
+    createdAt: {
+      type: Sequelize.DATE
     }
   },
   {

@@ -1,10 +1,11 @@
+//four characters. when pick. update user_character_id
 const { Model, DataTypes } = require('sequelize');
 
 const sequelize = require('../config/connection');
 
-class User extends Model {}
+class Character extends Model {}
 
-User.init(
+Character.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -12,25 +13,9 @@ User.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    firstName: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
-    },
-    lastName: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
-      validate: {
-        isEmail: true
-      }
-    },
-    age: {
-      type: DataTypes.INTEGER,
-      allowNull: false
     }
   },
   {
@@ -38,8 +23,8 @@ User.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'user',
+    modelName: 'character',
   }
 );
 
-module.exports = User;
+module.exports = Character;
