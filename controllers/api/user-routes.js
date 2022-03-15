@@ -45,8 +45,6 @@ router.post('/login', (req, res) => {
 
 // TODO: WHEN PLAYER CHOOSES POST WHICH CHARACTER TO CHARACTER MODEL -- LINKED TO USER
 // TODO: PUT ROUTE TO NEW GAME/RESET PROGRESS MODEL?
-const {User} = require('../../models');
-
 //GET all users
 router.get('/', (req, res) => {
   User.findAll({

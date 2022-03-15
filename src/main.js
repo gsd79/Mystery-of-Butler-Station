@@ -434,13 +434,7 @@
       game.player.velocity_x = 0;
       game.player.old_x = game.player.x =
         display.buffer.canvas.width - game.player.width - 0.001;
-      /* I added that - 0.001 to the equation to really push the player object back into
-      the game world. If the edge of the world is 320 px, and you set the right edge of
-      the player obect to 320, technically its tile position will be 1 tile to the right of
-      the edge of the world when calculated. Say there are 10 columns in the map, and each
-      tile is 32 pixels wide. 320/32 is 10, but since our map index starts at 0, a value of 10
-      falls outside of the map's number of columns. Failing to handle this can result in
-      testing collision on tiles in another row, or tiles at undefined positions in the map array.*/
+     
     }
 
     if (game.player.y < 0) {
@@ -454,22 +448,8 @@
       game.player.old_y = game.player.y =
         display.buffer.canvas.height - game.player.height - 0.001;
     }
-
-    /* Here is where we do broadphase collision detection with the four corners of
-    our player object. This is very important. In the last tutorial the player only
-    had 1 collision registration point. Collision was simple, then. Now, it's just as
-    simple, but we need to do it for each corner of our player object. */
-
-    /* Once again, there's no point of testing collision if we're not moving. depending
-    on which direction we are moving we must test different collision registration points
-    on our player. For instance, if he is moving left, we test the points on his left side: */
     if (game.player.x - game.player.old_x < 0) {
       // test collision on left side of player if moving left
-
-      /* There are much more efficient ways to write this code without repeating
-      variable names and this big monsterous block of if statements, but I thought it
-      would be good to have specific variable names and less abstraction so you can
-      get an idea of what's going on. */
       var left_column = Math.floor(game.player.left / game.world.tile_size);
       var bottom_row = Math.floor(game.player.bottom / game.world.tile_size);
       var value_at_index =
@@ -593,14 +573,23 @@ window.addEventListener("keydown", function (event) {
   if (event.key === "Enter") {
     validate(event);
   }
-});
 
-function validate(event) {
+
+  async function validate(event) {
+  console.log(event);
   var text = event.target.value;
-  alert();
+  // fetch("/api/questions/1").then(res => {
+  //     console.log(res);
+  // })
+  const response = await fetch(`/api/questions/1`, {
+    method: 'GET',
+    
+  });
+  console.log(response);
 }
 window.addEventListener("keyup", controller.keyUpDown);
 
+});
 display.resize();
 
 game.loop();
