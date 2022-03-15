@@ -578,15 +578,31 @@ window.addEventListener("keydown", function (event) {
   async function validate(event) {
   console.log(event);
   var text = event.target.value;
-  fetch("/api/questions/1").then(questions => {
-    console.log(questions);
-     questions.json().then(questions => formatQuestions(questions))
-    });
+  fetch("/api/questions/1").then(response => response.json() 
+    .then(questionResponse=> {
+      const questionObj= questionResponse;
+      console.log(questionObj);
+      return questionObj;
+    }
+    )
+    
+  
+    // const formattedQuestions= res.json(questions);
+    // console.log(formattedQuestions);
+    )}
 
-     function formatQuestions(questions){
-         console.log(questions);
-     };
-
+     function formatQuestions(questionObj){
+       console.log(questions);
+      };
+      return questions.map((question) => {
+        return {
+          ...question,
+          choices: question.choices.split(',').map((c)=> c.trim())	
+        };
+      })
+      //format questions call with quesiton object inside
+    
+    // formatQuestions(newFormatedQuestions);
     //   {const questionsObj = questionTable}) //console.log(questionTable));
     // const questionsObj = JSON.parse(questionTable);
     // console.log(questionsObj);
@@ -615,11 +631,12 @@ window.addEventListener("keydown", function (event) {
   // };
 
   
-    };
+    // };
+   });
 window.addEventListener("keyup", controller.keyUpDown);
 
 
 display.resize();
 
 game.loop();
-})();
+})()
