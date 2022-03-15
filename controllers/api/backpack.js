@@ -1,7 +1,8 @@
 const router = require('express').Router();
 const { Backpack } = require('../../models');
+const withAuth = require('../../utils/auth'); //TODO add for production turn in
 
-//get all items in backpack
+//get all items in backpack (testing purposes, will comment for production)
 router.get('/', (req, res) => {
   Backpack.findAll({
     
