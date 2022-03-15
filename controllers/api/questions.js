@@ -15,9 +15,9 @@ router.get('/', (req, res) => {
 
 //get question by id
 router.get('/:id', (req, res) => {
-  Questions.findOne({
+  Questions.findAll({
     where: {
-      id: req.params.id
+      category_id: req.params.id
     },
   })
   .then(dbQuestionData => {
