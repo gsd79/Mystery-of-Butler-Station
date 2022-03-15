@@ -43,8 +43,6 @@ router.post('/login', (req, res) => {
   });
 });
 
-// TODO: WHEN PLAYER CHOOSES POST WHICH CHARACTER TO CHARACTER MODEL -- LINKED TO USER
-// TODO: PUT ROUTE TO NEW GAME/RESET PROGRESS MODEL?
 //GET all users
 router.get('/', (req, res) => {
   User.findAll({
@@ -59,20 +57,33 @@ router.get('/', (req, res) => {
 
 // TODO: WHEN PLAYER CHOOSES POST WHICH CHARACTER TO CHARACTER MODEL -- LINKED TO USER
 
-//i dont think this is right
 router.post('/:id', (req, res) => {
-    // check the session
-    if (req.session) {
-      User.update({
-        character_id: req.body.character_id,
+  //TODO check the session
+    User.update(
+      {
+      character_id: req.body.character_id,
+      }, 
+      {
+        where: {
+          id: req.params.id
+        }
       })
-        .then(dbUserData => res.json(dbUserData))
-        .catch(err => {
-          console.log(err);
-          res.status(400).json(err);
-        });
-    }
-  });
+      .then(dbUserData =>
+        {
+          // res.json(dbUserData)
+          if(!dbUserData) {
+            res.status(404).json({ message: 'No user found with this id' })
+          } else {
+              return res.json('Successfully Updated User Character')
+          };
+        }
+        )
+      .catch(err => {
+        console.log(err);
+        res.status(400).json(err);
+      });
+  // }
+});
 
 // TODO: PUT ROUTE TO NEW GAME/RESET PROGRESS MODEL?
 // router.post('/', (req, res) => {
