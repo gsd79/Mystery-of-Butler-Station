@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { Progress } = require('../../models');
+const withAuth = require('../../utils/auth'); //TODO add for production turn in
 
 //GET all progress 
 router.get('/', (req, res) => {
