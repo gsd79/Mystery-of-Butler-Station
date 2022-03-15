@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { Questions } = require('../../models');
+const withAuth = require('../../utils/auth'); //TODO add for production turn in
 
 //GET ROUTE TO GENERATE QUESTION, STORED IN VARIABLES 
 router.get('/', (req, res) => {
