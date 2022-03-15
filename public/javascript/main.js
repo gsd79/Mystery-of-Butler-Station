@@ -578,14 +578,9 @@ window.addEventListener("keydown", function (event) {
   async function validate(event) {
   console.log(event);
   var text = event.target.value;
-  // fetch("/api/questions/1").then(res => {
-  //     console.log(res);
-  // })
-  const response = await fetch(`/api/questions/1`, {
-    method: 'GET',
-    
-  });
-  console.log(response);
+  fetch("/api/questions/1").then(questions => {
+    questions.json().then(data => console.log(data));
+  })
 }
 window.addEventListener("keyup", controller.keyUpDown);
 
