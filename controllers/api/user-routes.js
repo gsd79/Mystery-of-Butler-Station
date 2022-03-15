@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { User } = require('../../models');
 
 // sign up route
-router.post('/', (req, res) => {
+router.post('/signup', (req, res) => {
 
   User.create({
     email: req.body.email,
