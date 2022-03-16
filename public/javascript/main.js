@@ -578,18 +578,47 @@ window.addEventListener("keydown", function (event) {
   async function validate(event) {
   console.log(event);
   var text = event.target.value;
-  // fetch("/api/questions/1").then(res => {
-  //     console.log(res);
-  // })
-  const response = await fetch(`/api/questions/1`, {
-    method: 'GET',
+  fetch("/api/questions/1").then(questions => {
+    console.log(questions);
+     questions.json().then(questions => formatQuestions(questions))
+    });
+
+     function formatQuestions(questions){
+         console.log(questions);
+     };
+
+    //   {const questionsObj = questionTable}) //console.log(questionTable));
+    // const questionsObj = JSON.parse(questionTable);
+    // console.log(questionsObj);
+     
+  
+  // function getQuestion() {
+
+  //   //get the current question object from the array
+  //   let presentedQuestion = response[0];
     
-  });
-  console.log(response);
-}
+  //   //set question and choices to text
+  //   let question = document.getElementById("question");
+  //   question.textContent = presentedQuestion.question;
+  //   let choicesElement = document.getElementById("choices");
+  //   choicesElement.textContent = "";
+  //   //loop through the choices array
+  //   for(var i = 0; i < presentedQuestion.choices.length; i++) {
+  //     let choice = document.createElement("BUTTON");
+  //     choice.setAttribute("class" , "btn btn-primary m-4 p-3");
+  //     choice.textContent = presentedQuestion.choices[i];
+  //     choice.addEventListener("click", function () {
+  //       clickAnswer(choice.textContent)
+  //   });
+  //     choicesElement.appendChild(choice);
+  //   };
+  // };
+
+  
+    };
 window.addEventListener("keyup", controller.keyUpDown);
 
-});
+
 display.resize();
 
 game.loop();
