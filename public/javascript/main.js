@@ -648,6 +648,7 @@
 
   function questionClick(quizQuestions, answer) {
     if (answer !== quizQuestions[currentQuestionIndex].answer) {
+      //displays right or wrong answer
       feedbackEl.textContent = "Wrong";
     } else {
       feedbackEl.textContent = "Correct";
@@ -665,6 +666,12 @@
     } else {
       getQuestion(quizQuestions);
     }
+    //store correct answers
+    let getAnswers = JSON.parse(localStorage.getItem(getAnswers)) || [];
+    //  console.log(localStorage.getItem("correctAnswers"));
+    getAnswers.push(getAnswers);
+    console.log(getAnswers);
+    // localStorage.setItem("correctAnswers", JSON.stringify("correctAnswers"));
   }
 
   window.addEventListener("keyup", controller.keyUpDown);
