@@ -5,7 +5,7 @@
 body {
     background-image: url(../images/image-from-rawpixel-id-2363304-original.jpg);
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    
+
     overflow: hidden;
     margin: 0;
 }
@@ -21,14 +21,19 @@ header {
 .container {
     display: flex;
     width: 100%;
-    align-items:center;
-    flex-flow:row wrap;
-    
+    align-items: center;
+    flex-flow: row wrap;
+
 
 }
 
+.panel:hover {
+    background-color: rgb(0, 0, 255, 0.3);
+    ;
+}
+
 .panel {
-  
+
     background-size: auto 100%;
     background-position: center;
     background-repeat: no-repeat;
@@ -41,21 +46,21 @@ header {
     padding-bottom: 20px;
     position: relative;
     transition: flex 0.7s ease-in;
-    display:flex;
+    display: flex;
     flex-direction: column;
 }
 
 .panel img {
-   object-fit: scale-down;
-   height: 500px;
-;
+    object-fit: scale-down;
+    height: 500px;
+    ;
 }
 
 .panel h3 {
     font-size: 50px;
     position: absolute;
     bottom: 20px;
-  
+
     margin: 0 auto;
     opacity: 1;
     transform: skew(10deg, 10deg)
@@ -90,7 +95,7 @@ header {
 .title::before,
 .title::after {
     content: attr(data-text);
-    position:absolute;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -165,4 +170,8 @@ header {
     100% {
         clip: rect(95px, 1200px, 75px, 0)
     }
+}
+
+.playbutton {
+  margin:0 auto;  
 }
