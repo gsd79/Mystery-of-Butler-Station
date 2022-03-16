@@ -1,6 +1,5 @@
 //need to work on scrolling, finish Spaceship layout, get doors installed.
 
-
 (function () {
   "use strict";
 
@@ -37,7 +36,7 @@
     },
   };
 
-  display = {
+  (display = {
     buffer: document.createElement("canvas").getContext("2d"),
     context: document.querySelector("canvas").getContext("2d"),
     output: document.querySelector("p"),
@@ -51,7 +50,7 @@
         } else {
           this.buffer.fillStyle = "#303840";
         }
-        //map logic 
+        //map logic
         this.buffer.fillRect(
           (index % game.world.columns) * game.world.tile_size,
           Math.floor(index / game.world.columns) * game.world.tile_size,
@@ -147,10 +146,9 @@
       );
 
       display.render();
-    }
-  },
-
-    game = {
+    },
+  }),
+    (game = {
       /* This is the player object. Make sure to note that for this collision method
       to work, you must record the current and last positions of your game objects
       to use in collision detection. It is used to calculate the vector used to determine
@@ -225,42 +223,41 @@
         get oldTop() {
           return this.old_y;
         },
-
       },
-  
 
-
-    world: {
-    columns: 24,
-      rows: 24,
+      world: {
+        columns: 24,
+        rows: 24,
         tile_size: 20,
 
-          map: [
-            1, 1, 1, 1, 5, 5, 5, 5, 5, 5, 5, 5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-            2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
-            2, 0, 0, 0, 5, 5, 9, 5, 5, 9, 9, 5, 0, 5, 5, 5, 5, 0, 0, 5, 5, 5, 5, 3,
-            2, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 3,
-            2, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 3,
-            5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 3,
-            2, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 3,
-            2, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 3,
-            2, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 3,
-            2, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 5, 5, 5, 5, 5, 0, 5, 5, 5,
-            2, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 3,
-            2, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 3,
-            5, 5, 5, 0, 5, 5, 5, 5, 5, 0, 5, 5, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 3,
-            2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 3,
-            2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 3,
-            2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
-            2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
-            2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
-            2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
-            2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
-            2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
-            2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
-            2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
-            4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,
-          ],
+        map: [
+          1, 1, 1, 1, 5, 5, 5, 5, 5, 5, 5, 5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+          1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          0, 3, 2, 0, 0, 0, 5, 5, 9, 5, 5, 9, 9, 5, 0, 5, 5, 5, 5, 0, 0, 5, 5,
+          5, 5, 3, 2, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0, 0,
+          0, 0, 0, 3, 2, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0,
+          0, 0, 0, 0, 3, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 5, 0, 0,
+          0, 0, 0, 0, 0, 3, 2, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 5, 0,
+          0, 0, 0, 0, 0, 0, 3, 2, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 5,
+          0, 0, 0, 0, 0, 0, 0, 3, 2, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 0,
+          5, 0, 0, 0, 0, 0, 0, 0, 3, 2, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 5, 0, 0,
+          0, 5, 5, 5, 5, 5, 0, 5, 5, 5, 2, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 5, 0,
+          0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 3, 2, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 5,
+          0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 3, 5, 5, 5, 0, 5, 5, 5, 5, 5, 0, 5,
+          5, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 3, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          0, 5, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 3, 2, 0, 0, 0, 0, 0, 0, 0, 0,
+          0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 3, 2, 0, 0, 0, 0, 0, 0, 0,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 2, 0, 0, 0, 0, 0, 0,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 2, 0, 0, 0, 0, 0,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 2, 0, 0, 0, 0,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 2, 0, 0, 0,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 2, 0, 0,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 2, 0,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 2,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
+          4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,
+          4,
+        ],
 
         // 1s are ceiling tiles
         // 2s and 3s are left and right wall tiles
@@ -272,371 +269,407 @@
         // the collision methods you might expect based on their names
       },
 
-  /* This object is responsible for getting the collision methods that match
+      /* This object is responsible for getting the collision methods that match
   tile values in the map. It uses what I call routing functions to group reusable
   narrow phase collision methods together to create a variety of different tile
   boundary shapes. You can get the same effect with an array of routing functions rather
   than giving an object's routing functions numeric indexes, if you prefer. It might be faster. */
-  collision: {
-    // top wall collision tile
-    1: function (object, row, column) {
-      // The player hits the bottom of ceiling tiles.
-      this.topCollision(row, object);
-    },
+      collision: {
+        // top wall collision tile
+        1: function (object, row, column) {
+          // The player hits the bottom of ceiling tiles.
+          this.topCollision(row, object);
+        },
 
-    // left wall collision tile
-    2: function (object, row, column) {
-      this.rightCollision(column, object);
-    },
+        // left wall collision tile
+        2: function (object, row, column) {
+          this.rightCollision(column, object);
+        },
 
-    // right wall collision tile
-    3: function (object, row, column) {
-      // The player collides with the left side of a wall on the right of the map.
-      this.leftCollision(column, object); // Confusing to visualize, but true.
-    },
+        // right wall collision tile
+        3: function (object, row, column) {
+          // The player collides with the left side of a wall on the right of the map.
+          this.leftCollision(column, object); // Confusing to visualize, but true.
+        },
 
-    // bottom wall collision tile
-    4: function (object, row, column) {
-      this.topCollision(row, column);
-    },
+        // bottom wall collision tile
+        4: function (object, row, column) {
+          this.topCollision(row, column);
+        },
 
-    // block tile with four walls
-    5: function (object, row, column) {
-     
-      if (this.topCollision(object, row)) {
-        return;
-      } // Make sure to early out
-      if (this.leftCollision(object, column)) {
-        return;
-      } // if a collision is detected.
-      if (this.rightCollision(object, column)) {
-        return;
-      }
-      this.bottomCollision(object, row); // No need to early out on the last check.
-    },
-    9: function (object, row, column) {
-      
-      if (this.topCollision(object, row)) {
-        return;
-      } // Make sure to early out
-      if (this.leftCollision(object, column)) {
-        return;
-      } // if a collision is detected.
-      if (this.rightCollision(object, column)) {
-        return;
-      }
-      this.bottomCollision(object, row); 
-    },
+        // block tile with four walls
+        5: function (object, row, column) {
+          if (this.topCollision(object, row)) {
+            return;
+          } // Make sure to early out
+          if (this.leftCollision(object, column)) {
+            return;
+          } // if a collision is detected.
+          if (this.rightCollision(object, column)) {
+            return;
+          }
+          this.bottomCollision(object, row); // No need to early out on the last check.
+        },
+        9: function (object, row, column) {
+          if (this.topCollision(object, row)) {
+            return;
+          } // Make sure to early out
+          if (this.leftCollision(object, column)) {
+            return;
+          } // if a collision is detected.
+          if (this.rightCollision(object, column)) {
+            return;
+          }
+          this.bottomCollision(object, row);
+        },
 
-    
-    leftCollision(object, column) {
-      
-      if (object.x - object.old_x > 0) {
-        // the left side of the specified tile column
-        var left = column * game.world.tile_size;
+        leftCollision(object, column) {
+          if (object.x - object.old_x > 0) {
+            // the left side of the specified tile column
+            var left = column * game.world.tile_size;
 
-        if (object.right > left && object.oldRight <= left) {
-          object.velocity_x = 0;
-          object.x = object.old_x = left - object.width - 0.001;
-          
-          return true;
+            if (object.right > left && object.oldRight <= left) {
+              object.velocity_x = 0;
+              object.x = object.old_x = left - object.width - 0.001;
+
+              return true;
+            }
+          }
+
+          return false;
+        },
+
+        rightCollision(object, column) {
+          if (object.x - object.old_x < 0) {
+            // the right side of the specified tile column
+            var right = (column + 1) * game.world.tile_size;
+
+            if (object.left < right && object.oldLeft >= right) {
+              object.velocity_x = 0;
+              object.old_x = object.x = right;
+
+              return true;
+            }
+          }
+
+          return false;
+        },
+
+        bottomCollision(object, row) {
+          // if the object is moving up
+          if (object.y - object.old_y < 0) {
+            var bottom = (row + 1) * game.world.tile_size;
+
+            if (object.top < bottom && object.oldTop >= bottom) {
+              object.velocity_y = 0;
+              object.old_y = object.y = bottom;
+            }
+          }
+        },
+
+        topCollision(object, row) {
+          // if the object is moving down
+          if (object.y - object.old_y > 0) {
+            // the top side of the specified tile row
+            var top = row * game.world.tile_size;
+
+            // if the object has passed through the tile boundary since the last game cycle
+            if (object.bottom > top && object.oldBottom <= top) {
+              object.velocity_y = 0;
+              object.old_y = object.y = top - object.height - 0.01;
+
+              return true;
+            }
+          }
+
+          return false;
+        },
+      },
+
+      // The game loop:
+      loop: function () {
+        // Get controller input and move that player object!
+        if (controller.down) {
+          game.player.velocity_y += 0.15;
+          console.log("Player x-axis", game.player.x);
+          console.log("Player y-axis", game.player.y);
         }
-      }
 
-      return false;
-    },
-
-    rightCollision(object, column) {
-      if (object.x - object.old_x < 0) {
-        // the right side of the specified tile column
-        var right = (column + 1) * game.world.tile_size;
-
-        if (object.left < right && object.oldLeft >= right) {
-          object.velocity_x = 0;
-          object.old_x = object.x = right;
-
-          return true;
+        if (controller.left) {
+          game.player.velocity_x -= 0.25;
         }
-      }
 
-      return false;
-    },
-
-    bottomCollision(object, row) {
-      // if the object is moving up
-      if (object.y - object.old_y < 0) {
-        var bottom = (row + 1) * game.world.tile_size;
-
-        if (object.top < bottom && object.oldTop >= bottom) {
-          object.velocity_y = 0;
-          object.old_y = object.y = bottom;
+        if (controller.right) {
+          game.player.velocity_x += 0.25;
         }
-      }
-    },
 
-    topCollision(object, row) {
-      // if the object is moving down
-      if (object.y - object.old_y > 0) {
-        // the top side of the specified tile row
-        var top = row * game.world.tile_size;
-
-        // if the object has passed through the tile boundary since the last game cycle
-        if (object.bottom > top && object.oldBottom <= top) {
-          object.velocity_y = 0;
-          object.old_y = object.y = top - object.height - 0.01;
-
-          return true;
+        if (controller.up) {
+          game.player.velocity_y -= 0.25;
+          console.log("Player x-axis", game.player.x);
+          console.log("Player y-axis", game.player.y);
         }
-      }
 
-      return false;
-    },
-  },
+        // Update the player object:
+        game.player.old_x = game.player.x; // Set the old position to the current position
+        game.player.old_y = game.player.y; // before we update the current position, thus making it current
 
-  // The game loop:
-  loop: function () {
-    // Get controller input and move that player object!
-    if (controller.down) {
-      game.player.velocity_y += 0.15;
-      console.log("Player x-axis", game.player.x);
-      console.log("Player y-axis", game.player.y);
+        game.player.x += game.player.velocity_x; // Update the current position
+        game.player.y += game.player.velocity_y;
+
+        // Do collision detection and response with the boundaries of the screen.
+        if (game.player.x < 0) {
+          game.player.velocity_x = 0;
+          game.player.old_x = game.player.x = 0;
+        } else if (
+          game.player.x + game.player.width >
+          display.buffer.canvas.width
+        ) {
+          game.player.velocity_x = 0;
+          game.player.old_x = game.player.x =
+            display.buffer.canvas.width - game.player.width - 0.001;
+        }
+
+        if (game.player.y < 0) {
+          game.player.velocity_y = 0;
+          game.player.old_y = game.player.y = 0;
+        } else if (
+          game.player.y + game.player.height >
+          display.buffer.canvas.height
+        ) {
+          game.player.velocity_y = 0;
+          game.player.old_y = game.player.y =
+            display.buffer.canvas.height - game.player.height - 0.001;
+        }
+        if (game.player.x - game.player.old_x < 0) {
+          // test collision on left side of player if moving left
+          var left_column = Math.floor(game.player.left / game.world.tile_size);
+          var bottom_row = Math.floor(
+            game.player.bottom / game.world.tile_size
+          );
+          var value_at_index =
+            game.world.map[bottom_row * game.world.columns + left_column];
+
+          if (value_at_index != 0) {
+            // Check the bottom left point
+
+            game.collision[value_at_index](
+              game.player,
+              bottom_row,
+              left_column
+            );
+            display.output.innerHTML =
+              "last tile collided with: " + value_at_index;
+          }
+
+          var top_row = Math.floor(game.player.top / game.world.tile_size);
+          value_at_index =
+            game.world.map[top_row * game.world.columns + left_column];
+
+          if (value_at_index != 0) {
+            // Check the top left point
+
+            game.collision[value_at_index](game.player, top_row, left_column);
+            display.output.innerHTML =
+              "last tile collided with: " + value_at_index;
+          }
+        } else if (game.player.x - game.player.old_x > 0) {
+          // Is the player moving right?
+
+          var right_column = Math.floor(
+            game.player.right / game.world.tile_size
+          );
+          var bottom_row = Math.floor(
+            game.player.bottom / game.world.tile_size
+          );
+          var value_at_index =
+            game.world.map[bottom_row * game.world.columns + right_column];
+
+          if (value_at_index != 0) {
+            // Check the bottom right point
+
+            game.collision[value_at_index](
+              game.player,
+              bottom_row,
+              right_column
+            );
+            display.output.innerHTML =
+              "last tile collided with: " + value_at_index;
+          }
+
+          var top_row = Math.floor(game.player.top / game.world.tile_size);
+          value_at_index =
+            game.world.map[top_row * game.world.columns + right_column];
+
+          if (value_at_index != 0) {
+            // Check the top right point
+
+            game.collision[value_at_index](game.player, top_row, right_column);
+            display.output.innerHTML =
+              "last tile collided with: " + value_at_index;
+          }
+        }
+
+        if (game.player.y - game.player.old_y < 0) {
+          var left_column = Math.floor(game.player.left / game.world.tile_size);
+          var top_row = Math.floor(game.player.top / game.world.tile_size);
+          var value_at_index =
+            game.world.map[top_row * game.world.columns + left_column];
+
+          if (value_at_index != 0) {
+            // Check the top left point
+
+            game.collision[value_at_index](game.player, top_row, left_column);
+            display.output.innerHTML =
+              "last tile collided with: " + value_at_index;
+          }
+
+          var right_column = Math.floor(
+            game.player.right / game.world.tile_size
+          );
+          value_at_index =
+            game.world.map[top_row * game.world.columns + right_column];
+
+          if (value_at_index != 0) {
+            // Check the top right point
+
+            game.collision[value_at_index](game.player, top_row, right_column);
+            display.output.innerHTML =
+              "last tile collided with: " + value_at_index;
+          }
+        } else if (game.player.y - game.player.old_y > 0) {
+          var left_column = Math.floor(game.player.left / game.world.tile_size);
+          var bottom_row = Math.floor(
+            game.player.bottom / game.world.tile_size
+          );
+          var value_at_index =
+            game.world.map[bottom_row * game.world.columns + left_column];
+
+          if (value_at_index != 0) {
+            // Check the bottom left point
+
+            game.collision[value_at_index](
+              game.player,
+              bottom_row,
+              left_column
+            );
+            display.output.innerHTML =
+              "last tile collided with: " + value_at_index;
+          }
+
+          var right_column = Math.floor(
+            game.player.right / game.world.tile_size
+          );
+          value_at_index =
+            game.world.map[bottom_row * game.world.columns + right_column];
+
+          if (value_at_index != 0) {
+            // Check the bottom right point
+
+            game.collision[value_at_index](
+              game.player,
+              bottom_row,
+              right_column
+            );
+            display.output.innerHTML =
+              "last tile collided with: " + value_at_index;
+          }
+        }
+
+        game.player.velocity_x *= 0.9;
+        game.player.velocity_y *= 0.9;
+
+        display.render();
+
+        window.requestAnimationFrame(game.loop);
+      },
+    });
+
+  display.buffer.canvas.height = 300;
+  display.buffer.canvas.width = 420;
+
+  window.addEventListener("resize", display.resize);
+  window.addEventListener("keydown", controller.keyUpDown);
+  window.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      validate(event);
     }
 
-    if (controller.left) {
-      game.player.velocity_x -= 0.25;
+    async function validate(event) {
+      console.log(event);
+      var text = event.target.value;
+      fetch("/api/questions/1").then((response) => {
+        response.json().then((questions) => {
+          const formatQuestions = questions.map((question) => {
+            return {
+              ...question,
+              choices: question.choices.split(",").map((c) => c.trim()),
+            };
+          });
+
+          getQuestion(formatQuestions);
+        });
+      });
     }
+  });
 
-    if (controller.right) {
-      game.player.velocity_x += 0.25;
-    }
+  let currentQuestionIndex = 0;
+  var questionsEl = document.getElementById("questions");
+  var timerEl = document.getElementById("time");
+  var choicesEl = document.getElementById("choices");
+  var feedbackEl = document.getElementById("feedback");
+  var startBtn = document.getElementById("start");
 
-    if (controller.up) {
-      game.player.velocity_y -= 0.25;
-      console.log("Player x-axis", game.player.x);
-      console.log("Player y-axis", game.player.y);
-    }
+  function getQuestion(questions) {
+    let currentQuestion = questions[currentQuestionIndex];
 
-    // Update the player object:
-    game.player.old_x = game.player.x; // Set the old position to the current position
-    game.player.old_y = game.player.y; // before we update the current position, thus making it current
+    let questionTitleElement = document.querySelector("#question-title");
 
-    game.player.x += game.player.velocity_x; // Update the current position
-    game.player.y += game.player.velocity_y;
+    questionTitleElement.textContent = currentQuestion.question;
 
-    // Do collision detection and response with the boundaries of the screen.
-    if (game.player.x < 0) {
-      game.player.velocity_x = 0;
-      game.player.old_x = game.player.x = 0;
-    } else if (
-      game.player.x + game.player.width >
-      display.buffer.canvas.width
-    ) {
-      game.player.velocity_x = 0;
-      game.player.old_x = game.player.x =
-        display.buffer.canvas.width - game.player.width - 0.001;
-     
-    }
+    // clear out any old question choices
+    choicesEl.textContent = "";
+    // choicesEl.innerHTML = "";
 
-    if (game.player.y < 0) {
-      game.player.velocity_y = 0;
-      game.player.old_y = game.player.y = 0;
-    } else if (
-      game.player.y + game.player.height >
-      display.buffer.canvas.height
-    ) {
-      game.player.velocity_y = 0;
-      game.player.old_y = game.player.y =
-        display.buffer.canvas.height - game.player.height - 0.001;
-    }
-    if (game.player.x - game.player.old_x < 0) {
-      // test collision on left side of player if moving left
-      var left_column = Math.floor(game.player.left / game.world.tile_size);
-      var bottom_row = Math.floor(game.player.bottom / game.world.tile_size);
-      var value_at_index =
-        game.world.map[bottom_row * game.world.columns + left_column];
+    currentQuestion.choices.forEach((element, index) => {
+      //console.log("element", element);
+      var choiceNode = document.createElement("button");
+      choiceNode.setAttribute("class", "choice");
+      //choiceNode.setAttribute("value", element);
+      choiceNode.textContent = index + 1 + ". " + element;
 
-      if (value_at_index != 0) {
-        // Check the bottom left point
+      choiceNode.addEventListener("click", function () {
+        questionClick(questions, element);
+      });
 
-        game.collision[value_at_index](game.player, bottom_row, left_column);
-        display.output.innerHTML =
-          "last tile collided with: " + value_at_index;
-      }
-
-      var top_row = Math.floor(game.player.top / game.world.tile_size);
-      value_at_index =
-        game.world.map[top_row * game.world.columns + left_column];
-
-      if (value_at_index != 0) {
-        // Check the top left point
-
-        game.collision[value_at_index](game.player, top_row, left_column);
-        display.output.innerHTML =
-          "last tile collided with: " + value_at_index;
-      }
-    } else if (game.player.x - game.player.old_x > 0) {
-      // Is the player moving right?
-
-      var right_column = Math.floor(game.player.right / game.world.tile_size);
-      var bottom_row = Math.floor(game.player.bottom / game.world.tile_size);
-      var value_at_index =
-        game.world.map[bottom_row * game.world.columns + right_column];
-
-      if (value_at_index != 0) {
-        // Check the bottom right point
-
-        game.collision[value_at_index](game.player, bottom_row, right_column);
-        display.output.innerHTML =
-          "last tile collided with: " + value_at_index;
-      }
-
-      var top_row = Math.floor(game.player.top / game.world.tile_size);
-      value_at_index =
-        game.world.map[top_row * game.world.columns + right_column];
-
-      if (value_at_index != 0) {
-        // Check the top right point
-
-        game.collision[value_at_index](game.player, top_row, right_column);
-        display.output.innerHTML =
-          "last tile collided with: " + value_at_index;
-      }
-    }
-
-    if (game.player.y - game.player.old_y < 0) {
-      var left_column = Math.floor(game.player.left / game.world.tile_size);
-      var top_row = Math.floor(game.player.top / game.world.tile_size);
-      var value_at_index =
-        game.world.map[top_row * game.world.columns + left_column];
-
-      if (value_at_index != 0) {
-        // Check the top left point
-
-        game.collision[value_at_index](game.player, top_row, left_column);
-        display.output.innerHTML =
-          "last tile collided with: " + value_at_index;
-      }
-
-      var right_column = Math.floor(game.player.right / game.world.tile_size);
-      value_at_index =
-        game.world.map[top_row * game.world.columns + right_column];
-
-      if (value_at_index != 0) {
-        // Check the top right point
-
-        game.collision[value_at_index](game.player, top_row, right_column);
-        display.output.innerHTML =
-          "last tile collided with: " + value_at_index;
-      }
-    } else if (game.player.y - game.player.old_y > 0) {
-      var left_column = Math.floor(game.player.left / game.world.tile_size);
-      var bottom_row = Math.floor(game.player.bottom / game.world.tile_size);
-      var value_at_index =
-        game.world.map[bottom_row * game.world.columns + left_column];
-
-      if (value_at_index != 0) {
-        // Check the bottom left point
-
-        game.collision[value_at_index](game.player, bottom_row, left_column);
-        display.output.innerHTML =
-          "last tile collided with: " + value_at_index;
-      }
-
-      var right_column = Math.floor(game.player.right / game.world.tile_size);
-      value_at_index =
-        game.world.map[bottom_row * game.world.columns + right_column];
-
-      if (value_at_index != 0) {
-        // Check the bottom right point
-
-        game.collision[value_at_index](game.player, bottom_row, right_column);
-        display.output.innerHTML =
-          "last tile collided with: " + value_at_index;
-      }
-    }
-
-    game.player.velocity_x *= 0.9;
-    game.player.velocity_y *= 0.9;
-
-    display.render();
-
-    window.requestAnimationFrame(game.loop);
-  },
-};
-
-display.buffer.canvas.height = 300;
-display.buffer.canvas.width = 420;
-
-window.addEventListener("resize", display.resize);
-window.addEventListener("keydown", controller.keyUpDown);
-window.addEventListener("keydown", function (event) {
-  if (event.key === "Enter") {
-    validate(event);
+      choicesEl.appendChild(choiceNode);
+      //console.log("choiceNode", choiceNode)
+    });
   }
 
-
-  async function validate(event) {
-  console.log(event);
-  var text = event.target.value;
-  fetch("/api/questions/1").then(response => response.json() 
-    .then(questionResponse=> {
-      const questionObj= questionResponse;
-      console.log(questionObj);
-      return questionObj;
+  function questionClick(quizQuestions, answer) {
+    if (answer !== quizQuestions[currentQuestionIndex].answer) {
+      feedbackEl.textContent = "Wrong";
+    } else {
+      feedbackEl.textContent = "Correct";
     }
-    )
-    
-  
-    // const formattedQuestions= res.json(questions);
-    // console.log(formattedQuestions);
-    )}
 
-     function formatQuestions(questionObj){
-       console.log(questions);
-      };
-      return questions.map((question) => {
-        return {
-          ...question,
-          choices: question.choices.split(',').map((c)=> c.trim())	
-        };
-      })
-      //format questions call with quesiton object inside
-    
-    // formatQuestions(newFormatedQuestions);
-    //   {const questionsObj = questionTable}) //console.log(questionTable));
-    // const questionsObj = JSON.parse(questionTable);
-    // console.log(questionsObj);
-     
-  
-  // function getQuestion() {
+    feedbackEl.removeAttribute("class");
 
-  //   //get the current question object from the array
-  //   let presentedQuestion = response[0];
-    
-  //   //set question and choices to text
-  //   let question = document.getElementById("question");
-  //   question.textContent = presentedQuestion.question;
-  //   let choicesElement = document.getElementById("choices");
-  //   choicesElement.textContent = "";
-  //   //loop through the choices array
-  //   for(var i = 0; i < presentedQuestion.choices.length; i++) {
-  //     let choice = document.createElement("BUTTON");
-  //     choice.setAttribute("class" , "btn btn-primary m-4 p-3");
-  //     choice.textContent = presentedQuestion.choices[i];
-  //     choice.addEventListener("click", function () {
-  //       clickAnswer(choice.textContent)
-  //   });
-  //     choicesElement.appendChild(choice);
-  //   };
-  // };
+    // move to next question
+    currentQuestionIndex++;
 
-  
-    // };
-   });
-window.addEventListener("keyup", controller.keyUpDown);
+    // check if we've run out of questions
+    if (currentQuestionIndex === quizQuestions.length) {
+      quizEnd();
+      //alert("Quiz is over");
+    } else {
+      getQuestion(quizQuestions);
+    }
+  }
 
+  window.addEventListener("keyup", controller.keyUpDown);
 
-display.resize();
+  display.resize();
 
-game.loop();
-})()
+  game.loop();
+})();
