@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { User } = require('../../models');
+const withAuth = require('../../utils/auth'); //TODO add for production turn in
 
 // sign up route
 router.post('/signup', (req, res) => {

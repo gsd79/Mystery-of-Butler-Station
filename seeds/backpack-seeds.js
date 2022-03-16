@@ -16,3 +16,5 @@ const backpackData = [
 const seedBackpack = () => Backpack.bulkCreate(backpackData);
 
 module.exports = seedBackpack;
+
+//TODO THIS FILE NEEDS TO BE REMOVED FOR PRODUCTION
