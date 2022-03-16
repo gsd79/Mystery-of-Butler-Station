@@ -612,7 +612,7 @@
     }
   });
 
-  let currentQuestionIndex = 0;
+  let currentQuestionIndex = 16;
   var questionsEl = document.getElementById("questions");
   var timerEl = document.getElementById("time");
   var choicesEl = document.getElementById("choices");
@@ -660,18 +660,37 @@
     currentQuestionIndex++;
 
     // check if we've run out of questions
-    if (currentQuestionIndex === quizQuestions.length) {
+    if (currentQuestionIndex >= quizQuestions.length) {
       quizEnd();
-      //alert("Quiz is over");
+      // alert("Congrats! Enjoy Butler Station");
     } else {
       getQuestion(quizQuestions);
     }
+
+    function quizEnd () {
+      alert("Congrats! Enjoy Butler Station");
+    };
     //store correct answers
-    let getAnswers = JSON.parse(localStorage.getItem(getAnswers)) || [];
-    //  console.log(localStorage.getItem("correctAnswers"));
-    getAnswers.push(getAnswers);
-    console.log(getAnswers);
-    // localStorage.setItem("correctAnswers", JSON.stringify("correctAnswers"));
+  //  if (answer) {
+  //    const response = await fetch ('/api/progress', {
+  //      method: 'POST',
+  //      body: JSON.stringify({
+  //       user_id: req.body.user_id,
+  //       level_id: req.body.level_id,
+  //       question_id: req.body.question_id,
+  //       isAnswerCorrect: req.body.isAnswerCorrect
+  //      }),
+  //      headers: { 
+  //        'Content-Type': 'application/json' 
+  //       }
+  //    });
+  //    if(response.ok) {
+  //      document.location.reload();
+  //      console.log(response)
+  //    } else {
+  //      alert(response.statusText);
+  //    }
+  //  }
   }
 
   window.addEventListener("keyup", controller.keyUpDown);
