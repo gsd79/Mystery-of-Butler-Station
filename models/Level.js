@@ -12,12 +12,8 @@ Level.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    level: { //TODO should this be category_id instead? ref category?
+    level: { 
       type: DataTypes.STRING,
-      allowNull: false,
-    },
-    questions: {
-      type: DataTypes.INTEGER,
       allowNull: false,
     }
   },
