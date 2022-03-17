@@ -1,17 +1,17 @@
-// import all models
-const Categories = require('./Categories');
-const Leaderboard = require('./Leaderboard');
-const Level = require('./Level');
-// const Login = require('./Login');
-const Progress = require('./Progress');
-const Questions = require('./Questions');
-const User = require('./User');
-const Backpack = require('./Backpack');
-const Character = require('./Character')
+// // import all models
+// const Categories = require('./Categories');
+// const Leaderboard = require('./Leaderboard');
+// const Level = require('./Level');
+// // const Login = require('./Login');
+// const Progress = require('./Progress');
+// const Questions = require('./Questions');
+// const User = require('./User');
+// const Backpack = require('./Backpack');
+// const Character = require('./Character')
 
 
 
-// create associations
+// // create associations
 
 // Backpack.belongsTo(User,{
 //   foreignKey: 'user_id'
@@ -30,14 +30,18 @@ const Character = require('./Character')
 // });
 
 // Leaderboard.belongsToMany(User, {
+//   through: Progress,
+//   as: 'level_id',
 //   foreignKey: 'user_id'
 // });
 
 // User.hasOne(Leaderboard, {
-//   foreignKey: 'user_id'
+//     foreignKey: 'user_id'
 // });
 
 // Progress.belongsToMany(User, {
+//   through: Leaderboard,
+//   as: 'user_id',
 //   foreignKey: 'user_id'
 // });
 
@@ -46,6 +50,8 @@ const Character = require('./Character')
 // })
 
 // Progress.belongsToMany(Level, {
+//   through: User, 
+//   as: 'user_id',
 //   foreignKey: 'level_id'
 // })
 
@@ -54,6 +60,8 @@ const Character = require('./Character')
 // })
 
 // Progress.belongsToMany(Questions, {
+//   through: User,
+//   as: 'user_id',
 //   foreignKey: 'question_id'
 // })
 
@@ -70,14 +78,14 @@ const Character = require('./Character')
 // })
 
 
-module.exports = { 
-  Categories,
-  Leaderboard,
-  Level,
-  // Login,
-  Progress,
-  Questions,
-  User,
-  Backpack,
-  Character
-};
+// module.exports = { 
+//   Categories,
+//   Leaderboard,
+//   Level,
+//   // Login,
+//   Progress,
+//   Questions,
+//   User,
+//   Backpack,
+//   Character
+// };
