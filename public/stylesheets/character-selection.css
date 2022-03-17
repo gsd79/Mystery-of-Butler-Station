@@ -57,13 +57,12 @@ header {
 }
 
 .panel h3 {
-    font-size: 50px;
-    position: absolute;
-    bottom: 20px;
-
+    font-size: 40px;
+    position: relative;
+    margin-top: 50px;
     margin: 0 auto;
     opacity: 1;
-    transform: skew(10deg, 10deg)
+    
 }
 
 .panel.active {

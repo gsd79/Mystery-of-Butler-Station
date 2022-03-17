@@ -21,8 +21,8 @@ router.get('/character-creation', (req, res) => {
   res.sendFile(path.join(__dirname, '../../public/character-creation.html'));
 });
 
-// router.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname, '../../public/login.html'));
-// });
+router.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../../public/login.html'));
+});
 
 module.exports = router;
