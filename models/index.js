@@ -9,7 +9,7 @@ const User = require('./User');
 const Backpack = require('./Backpack');
 const Character = require('./Character')
 
-
+//test
 
 // // create associations
 
