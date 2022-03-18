@@ -95,29 +95,7 @@
         game.npc.height
       );
 
-      //this.buffer.fillStyle = game.npc_two.color;
-      // this.buffer.fillRect(
-      //  game.npc_two.x,
-      //  game.npc_two.y,
-      //  game.npc_two.width,
-      //  game.npc_two.height
-      //  );
-
-      // this.buffer.fillStyle = game.npc_three.color;
-      //  this.buffer.fillRect(
-      //   game.npc_three.x,
-      //   game.npc_three.y,
-      //   game.npc_three.width,
-      //   game.npc_three.height
-      //  );
-
-      // this.buffer.fillStyle = game.npc_two.color;
-      // this.buffer.fillRect(
-      //   game.npc_four.x,
-      //   game.npc_four.y,
-      //   game.npc_four.width,
-      //   game.npc_four.height
-      // );
+      
       //draws NPC and player objects
       this.context.drawImage(
         this.buffer.canvas,
@@ -457,8 +435,8 @@
               bottom_row,
               left_column
             );
-            display.output.innerHTML =
-              "last tile collided with: " + value_at_index;
+            // display.output.innerHTML =
+            //   "last tile collided with: " + value_at_index;
           }
 
           var top_row = Math.floor(game.player.top / game.world.tile_size);
@@ -469,8 +447,8 @@
             // Check the top left point
 
             game.collision[value_at_index](game.player, top_row, left_column);
-            display.output.innerHTML =
-              "last tile collided with: " + value_at_index;
+            // display.output.innerHTML =
+            //   "last tile collided with: " + value_at_index;
           }
         } else if (game.player.x - game.player.old_x > 0) {
           // Is the player moving right?
@@ -492,8 +470,8 @@
               bottom_row,
               right_column
             );
-            display.output.innerHTML =
-              "last tile collided with: " + value_at_index;
+            // display.output.innerHTML =
+            //   "last tile collided with: " + value_at_index;
           }
 
           var top_row = Math.floor(game.player.top / game.world.tile_size);
@@ -503,9 +481,12 @@
           if (value_at_index != 0) {
             // Check the top right point
 
-            game.collision[value_at_index](game.player, top_row, right_column);
-            display.output.innerHTML =
-              "last tile collided with: " + value_at_index;
+            game.collision[value_at_index](
+              game.player, 
+              top_row, 
+              right_column);
+            // display.output.innerHTML =
+            //   "last tile collided with: " + value_at_index;
           }
         }
 
@@ -519,8 +500,8 @@
             // Check the top left point
 
             game.collision[value_at_index](game.player, top_row, left_column);
-            display.output.innerHTML =
-              "last tile collided with: " + value_at_index;
+            // display.output.innerHTML =
+            //   "last tile collided with: " + value_at_index;
           }
 
           var right_column = Math.floor(
@@ -533,8 +514,8 @@
             // Check the top right point
 
             game.collision[value_at_index](game.player, top_row, right_column);
-            display.output.innerHTML =
-              "last tile collided with: " + value_at_index;
+            // display.output.innerHTML =
+            //   "last tile collided with: " + value_at_index;
           }
         } else if (game.player.y - game.player.old_y > 0) {
           var left_column = Math.floor(game.player.left / game.world.tile_size);
@@ -552,8 +533,8 @@
               bottom_row,
               left_column
             );
-            display.output.innerHTML =
-              "last tile collided with: " + value_at_index;
+            // display.output.innerHTML =
+            //   "last tile collided with: " + value_at_index;
           }
 
           var right_column = Math.floor(
@@ -570,8 +551,8 @@
               bottom_row,
               right_column
             );
-            display.output.innerHTML =
-              "last tile collided with: " + value_at_index;
+            // display.output.innerHTML =
+            //   "last tile collided with: " + value_at_index;
           }
         }
 
