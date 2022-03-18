@@ -39,5 +39,14 @@ router.post('/', (req, res) => {
     // })
 });
 
+//TODO
+// router.get('/check/:id', (req, res) => {
+//   Progress.findAll({
+//     where: {
+//       user_id: 
+//     }
+//   })
+// })
+
 
 module.exports = router;

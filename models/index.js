@@ -11,7 +11,7 @@ const Character = require('./Character')
 
 //test
 
-// // create associations
+// create associations
 
 // Backpack.belongsTo(User,{
 //   foreignKey: 'user_id'
@@ -39,11 +39,11 @@ const Character = require('./Character')
 //     foreignKey: 'user_id'
 // });
 
-// Progress.belongsToMany(User, {
-//   through: Leaderboard,
-//   as: 'user_id',
-//   foreignKey: 'user_id'
-// });
+// // Progress.belongsToMany(User, {
+// //   through: Leaderboard,
+// //   as: 'user_id',
+// //   foreignKey: 'user_id'
+// // });
 
 // User.hasOne(Progress, {
 //   foreignKey: 'user_id'
