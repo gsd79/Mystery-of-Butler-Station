@@ -576,8 +576,6 @@
     }
 
     async function validate(event) {
-      console.log(event);
-      var text = event.target.value;
       fetch("/api/questions/1").then((response) => {
         response.json().then((questions) => {
           const formatQuestions = questions.map((question) => {
@@ -586,19 +584,21 @@
               choices: question.choices.split(",").map((c) => c.trim()),
             };
           });
-
-          getQuestion(formatQuestions);
+             timerId = setInterval(countDownTimer, 1000);
+          // countDownTime();
+           getQuestion(formatQuestions);
         });
       });
     }
   });
 
-  let currentQuestionIndex = 16;
+  let currentQuestionIndex = 0;
   var questionsEl = document.getElementById("questions");
-  var timerEl = document.getElementById("time");
+  var timerEl = document.getElementById("timer");
   var choicesEl = document.getElementById("choices");
   var feedbackEl = document.getElementById("feedback");
-  var startBtn = document.getElementById("start");
+  var time = 75;
+  var timerId;
 
   function getQuestion(questions) {
     let currentQuestion = questions[currentQuestionIndex];
@@ -625,54 +625,42 @@
       choicesEl.appendChild(choiceNode);
       //console.log("choiceNode", choiceNode)
     });
+    
   }
 
   function questionClick(quizQuestions, answer) {
     if (answer !== quizQuestions[currentQuestionIndex].answer) {
       //displays right or wrong answer
       feedbackEl.textContent = "Wrong";
+      timerEl.textContent = time;
     } else {
       feedbackEl.textContent = "Correct";
     }
 
     feedbackEl.removeAttribute("class");
 
+
     // move to next question
     currentQuestionIndex++;
 
     // check if we've run out of questions
-    if (currentQuestionIndex >= quizQuestions.length) {
+    if (currentQuestionIndex === quizQuestions.length) {
       quizEnd();
       // alert("Congrats! Enjoy Butler Station");
     } else {
       getQuestion(quizQuestions);
+    // }
     }
 
     function quizEnd () {
       alert("Congrats! Enjoy Butler Station");
     };
-    //store correct answers
-  //  if (answer) {
-  //    const response = await fetch ('/api/progress', {
-  //      method: 'POST',
-  //      body: JSON.stringify({
-  //       user_id: req.body.user_id,
-  //       level_id: req.body.level_id,
-  //       question_id: req.body.question_id,
-  //       isAnswerCorrect: req.body.isAnswerCorrect
-  //      }),
-  //      headers: { 
-  //        'Content-Type': 'application/json' 
-  //       }
-  //    });
-  //    if(response.ok) {
-  //      document.location.reload();
-  //      console.log(response)
-  //    } else {
-  //      alert(response.statusText);
-  //    }
-  //  }
   }
+
+  function countDownTimer() {
+    time --;
+    console.log(time);
+  };
 
   window.addEventListener("keyup", controller.keyUpDown);
 
