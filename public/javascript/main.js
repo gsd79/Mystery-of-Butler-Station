@@ -1,5 +1,7 @@
 //need to work on scrolling, finish Spaceship layout, get doors installed.
 
+// const { IncrementWrapStencilOp } = require("three");
+
 (function () {
   "use strict";
 
@@ -585,7 +587,7 @@
             };
           });
              timerId = setInterval(countDownTimer, 1000);
-          // countDownTime();
+           countDownTimer();
            getQuestion(formatQuestions);
         });
       });
@@ -597,7 +599,7 @@
   var timerEl = document.getElementById("timer");
   var choicesEl = document.getElementById("choices");
   var feedbackEl = document.getElementById("feedback");
-  var time = 75;
+  var time = 10;
   var timerId;
 
   function getQuestion(questions) {
@@ -632,6 +634,11 @@
     if (answer !== quizQuestions[currentQuestionIndex].answer) {
       //displays right or wrong answer
       feedbackEl.textContent = "Wrong";
+      time -= 10;
+      if(time < 0) {
+        time = 0;
+      }
+
       timerEl.textContent = time;
     } else {
       feedbackEl.textContent = "Correct";
@@ -651,15 +658,21 @@
       getQuestion(quizQuestions);
     // }
     }
-
-    function quizEnd () {
-      alert("Congrats! Enjoy Butler Station");
-    };
   }
 
   function countDownTimer() {
     time --;
+    timerEl.textContent= "Time: " + time;
     console.log(time);
+
+    if(time <= 0) {
+      quizEnd();
+    }
+  };
+
+  function quizEnd() {
+    clearInterval(timerId);
+    alert("Quiz has ended");
   };
 
   window.addEventListener("keyup", controller.keyUpDown);
