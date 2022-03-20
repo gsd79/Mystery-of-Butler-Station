@@ -599,7 +599,7 @@
   var timerEl = document.getElementById("timer");
   var choicesEl = document.getElementById("choices");
   var feedbackEl = document.getElementById("feedback");
-  var time = 10;
+  var time = 20;
   var timerId;
 
   function getQuestion(questions) {
@@ -663,7 +663,7 @@
   function countDownTimer() {
     time --;
     timerEl.textContent= "Time: " + time;
-    console.log(time);
+    // console.log(time);
 
     if(time <= 0) {
       quizEnd();
@@ -671,8 +671,11 @@
   };
 
   function quizEnd() {
-    clearInterval(timerId);
-    alert("Quiz has ended");
+         //clear screen
+  clearInterval(timerId);
+  //hide present question
+  var questionsEl = document.getElementById("quizScreen");
+  questionsEl.setAttribute("class", "hide");
   };
 
   window.addEventListener("keyup", controller.keyUpDown);
