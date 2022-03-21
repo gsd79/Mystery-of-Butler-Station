@@ -605,8 +605,6 @@
               choices: question.choices.split(",").map((c) => c.trim()),
             };
           });
-          const fiveQuestions = formatQuestions.slice(0,5);
-          console.log(fiveQuestions);
           getQuestion(formatQuestions);
         });
       });
