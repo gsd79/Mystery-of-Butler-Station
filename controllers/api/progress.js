@@ -28,6 +28,26 @@ router.post('/', (req, res) => {
       console.log(err);
       res.status(500).json(err);
     });
+    //GET ROUTE TO TRACK NUMBER OF QUESTIONS CORRECTLY (IF 3 CORRECT)
+    router.get('/check/:id', (req, res) => {
+      Progress.findAll({
+        where: {
+          user_id: req.params.id,
+          isAnswerCorrect: true
+        }
+      })
+        .then(dbProgressData => {
+          if (!dbProgressData) {
+            res.status(404).json({ message: 'No progress found with this id!' });
+            return;
+          }
+          res.send(dbProgressData);
+        })
+        .catch(err => {
+          console.log(err);
+          res.status(500).json(err);
+        });
+    })
     //TODO should i think about using session here? .then(dbProgressData => {
     //   req.session.save(() => {
     //     req.session.user_id = dbUserData.id;
