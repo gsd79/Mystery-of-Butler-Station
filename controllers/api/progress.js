@@ -39,5 +39,26 @@ router.post('/', (req, res) => {
     // })
 });
 
+//get route to check how many questions a user_id has correct in their progress.
+router.get('/check/:id', (req, res) => {
+  Progress.findAll({
+    where: {
+      user_id: req.params.id,
+      isAnswerCorrect: true
+    }
+  })
+    .then(dbProgressData => {
+      if (!dbProgressData) {
+        res.status(404).json({ message: 'No progress found with this id!' });
+        return;
+      }
+      res.send(dbProgressData);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+})
+
 
 module.exports = router;

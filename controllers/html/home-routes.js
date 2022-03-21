@@ -1,6 +1,7 @@
 const path = require('path');
 const router = require('express').Router();
 
+//TODO ask Qing about line 6
 router.get('/', (req, res) => {
   res.render('homepage', {});
 });
