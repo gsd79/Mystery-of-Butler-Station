@@ -1,5 +1,7 @@
 //need to work on scrolling, finish Spaceship layout, get doors installed.
 
+// const { IncrementWrapStencilOp } = require("three");
+
 (function () {
   "use strict";
 
@@ -95,29 +97,7 @@
         game.npc.height
       );
 
-      //this.buffer.fillStyle = game.npc_two.color;
-      // this.buffer.fillRect(
-      //  game.npc_two.x,
-      //  game.npc_two.y,
-      //  game.npc_two.width,
-      //  game.npc_two.height
-      //  );
-
-      // this.buffer.fillStyle = game.npc_three.color;
-      //  this.buffer.fillRect(
-      //   game.npc_three.x,
-      //   game.npc_three.y,
-      //   game.npc_three.width,
-      //   game.npc_three.height
-      //  );
-
-      // this.buffer.fillStyle = game.npc_two.color;
-      // this.buffer.fillRect(
-      //   game.npc_four.x,
-      //   game.npc_four.y,
-      //   game.npc_four.width,
-      //   game.npc_four.height
-      // );
+      
       //draws NPC and player objects
       this.context.drawImage(
         this.buffer.canvas,
@@ -457,8 +437,8 @@
               bottom_row,
               left_column
             );
-            display.output.innerHTML =
-              "last tile collided with: " + value_at_index;
+            // display.output.innerHTML =
+            //   "last tile collided with: " + value_at_index;
           }
 
           var top_row = Math.floor(game.player.top / game.world.tile_size);
@@ -469,8 +449,8 @@
             // Check the top left point
 
             game.collision[value_at_index](game.player, top_row, left_column);
-            display.output.innerHTML =
-              "last tile collided with: " + value_at_index;
+            // display.output.innerHTML =
+            //   "last tile collided with: " + value_at_index;
           }
         } else if (game.player.x - game.player.old_x > 0) {
           // Is the player moving right?
@@ -492,8 +472,8 @@
               bottom_row,
               right_column
             );
-            display.output.innerHTML =
-              "last tile collided with: " + value_at_index;
+            // display.output.innerHTML =
+            //   "last tile collided with: " + value_at_index;
           }
 
           var top_row = Math.floor(game.player.top / game.world.tile_size);
@@ -503,9 +483,12 @@
           if (value_at_index != 0) {
             // Check the top right point
 
-            game.collision[value_at_index](game.player, top_row, right_column);
-            display.output.innerHTML =
-              "last tile collided with: " + value_at_index;
+            game.collision[value_at_index](
+              game.player, 
+              top_row, 
+              right_column);
+            // display.output.innerHTML =
+            //   "last tile collided with: " + value_at_index;
           }
         }
 
@@ -519,8 +502,8 @@
             // Check the top left point
 
             game.collision[value_at_index](game.player, top_row, left_column);
-            display.output.innerHTML =
-              "last tile collided with: " + value_at_index;
+            // display.output.innerHTML =
+            //   "last tile collided with: " + value_at_index;
           }
 
           var right_column = Math.floor(
@@ -533,8 +516,8 @@
             // Check the top right point
 
             game.collision[value_at_index](game.player, top_row, right_column);
-            display.output.innerHTML =
-              "last tile collided with: " + value_at_index;
+            // display.output.innerHTML =
+            //   "last tile collided with: " + value_at_index;
           }
         } else if (game.player.y - game.player.old_y > 0) {
           var left_column = Math.floor(game.player.left / game.world.tile_size);
@@ -552,8 +535,8 @@
               bottom_row,
               left_column
             );
-            display.output.innerHTML =
-              "last tile collided with: " + value_at_index;
+            // display.output.innerHTML =
+            //   "last tile collided with: " + value_at_index;
           }
 
           var right_column = Math.floor(
@@ -570,8 +553,8 @@
               bottom_row,
               right_column
             );
-            display.output.innerHTML =
-              "last tile collided with: " + value_at_index;
+            // display.output.innerHTML =
+            //   "last tile collided with: " + value_at_index;
           }
         }
 
@@ -595,8 +578,6 @@
     }
 
     async function validate(event) {
-      console.log(event);
-      var text = event.target.value;
       fetch("/api/questions/1").then((response) => {
         response.json().then((questions) => {
           const formatQuestions = questions.map((question) => {
@@ -605,74 +586,32 @@
               choices: question.choices.split(",").map((c) => c.trim()),
             };
           });
-
-          getQuestion(formatQuestions);
+             timerId = setInterval(countDownTimer, 1000);
+           countDownTimer();
+           getQuestion(formatQuestions);
         });
       });
     }
   });
 
-  let currentQuestionIndex = 0;
-  var questionsEl = document.getElementById("questions");
-  var timerEl = document.getElementById("time");
-  var choicesEl = document.getElementById("choices");
-  var feedbackEl = document.getElementById("feedback");
-  var startBtn = document.getElementById("start");
 
-  function getQuestion(questions) {
-    let currentQuestion = questions[currentQuestionIndex];
+  function countDownTimer() {
+    time --;
+    timerEl.textContent= "Time: " + time;
+    // console.log(time);
 
-    let questionTitleElement = document.querySelector("#question-title");
-
-    questionTitleElement.textContent = currentQuestion.question;
-
-    // clear out any old question choices
-    choicesEl.textContent = "";
-    // choicesEl.innerHTML = "";
-
-    currentQuestion.choices.forEach((element, index) => {
-      //console.log("element", element);
-      var choiceNode = document.createElement("button");
-      choiceNode.setAttribute("class", "choice");
-      //choiceNode.setAttribute("value", element);
-      choiceNode.textContent = index + 1 + ". " + element;
-
-      choiceNode.addEventListener("click", function () {
-        questionClick(questions, element);
-      });
-
-      choicesEl.appendChild(choiceNode);
-      //console.log("choiceNode", choiceNode)
-    });
-  }
-
-  function questionClick(quizQuestions, answer) {
-    if (answer !== quizQuestions[currentQuestionIndex].answer) {
-      //displays right or wrong answer
-      feedbackEl.textContent = "Wrong";
-    } else {
-      feedbackEl.textContent = "Correct";
-    }
-
-    feedbackEl.removeAttribute("class");
-
-    // move to next question
-    currentQuestionIndex++;
-
-    // check if we've run out of questions
-    if (currentQuestionIndex === quizQuestions.length) {
+    if(time <= 0) {
       quizEnd();
-      //alert("Quiz is over");
-    } else {
-      getQuestion(quizQuestions);
     }
-    //store correct answers
-    let getAnswers = JSON.parse(localStorage.getItem(getAnswers)) || [];
-    //  console.log(localStorage.getItem("correctAnswers"));
-    getAnswers.push(getAnswers);
-    console.log(getAnswers);
-    // localStorage.setItem("correctAnswers", JSON.stringify("correctAnswers"));
-  }
+  };
+
+  function quizEnd() {
+         //clear screen
+  clearInterval(timerId);
+  //hide present question
+  var questionsEl = document.getElementById("quizScreen");
+  questionsEl.setAttribute("class", "hide");
+  };
 
   window.addEventListener("keyup", controller.keyUpDown);
 
