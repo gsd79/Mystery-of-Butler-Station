@@ -40,7 +40,13 @@ router.post('/login', (req, res) => {
       return;
     }
 
-    res.json({ user: userLogIn, message: 'You are now logged in!' });
+    req.session.save(() => {
+      req.session.user_id = userLogIn.id;
+      req.session.username = userLogIn.username;
+      req.session.loggedIn = true;
+  
+      res.json({ user: userLogIn, message: 'You are now logged in!' });
+    });
   });
 });
 
@@ -59,7 +65,7 @@ router.get('/', (req, res) => {
 // TODO: WHEN PLAYER CHOOSES POST WHICH CHARACTER TO CHARACTER MODEL -- LINKED TO USER
 
 router.post('/:id', (req, res) => {
-  //TODO check the session
+  //TODO check the session instead so character fetch goes off req.sessions.userid instead
     User.update(
       {
       character_id: req.body.character_id,
@@ -86,7 +92,7 @@ router.post('/:id', (req, res) => {
   // }
 });
 
-// TODO: PUT ROUTE TO NEW GAME/RESET PROGRESS MODEL?
+// PUT ROUTE TO NEW GAME/RESET PROGRESS MODEL?
 // router.post('/', (req, res) => {
 //     // expects {username: 'Lernantino', email: 'lernantino@gmail.com', password: 'password1234'}
 //     User.create({

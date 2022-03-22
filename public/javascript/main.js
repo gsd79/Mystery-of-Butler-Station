@@ -586,8 +586,8 @@
               choices: question.choices.split(",").map((c) => c.trim()),
             };
           });
-             timerId = setInterval(countDownTimer, 1000);
-           countDownTimer();
+          //    timerId = setInterval(countDownTimer, 1000);
+          //  countDownTimer();
            getQuestion(formatQuestions);
         });
       });
@@ -595,6 +595,7 @@
         response.json().then((progressResponse) => {
           const progressArr = progressResponse;
           if (progressArr.length === 3) {
+            alert("CORRECT!")
             // next npc dialogue with hint
             // logic to change the door to open
           }

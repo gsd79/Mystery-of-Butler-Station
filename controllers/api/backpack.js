@@ -1,3 +1,5 @@
+//not using backpack in version one. progress determines door opening (3,6,9 correct question/answers respectively)
+
 const router = require('express').Router();
 const { Backpack } = require('../../models');
 const withAuth = require('../../utils/auth'); //TODO add for production turn in
