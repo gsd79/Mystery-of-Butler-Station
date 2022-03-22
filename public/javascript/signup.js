@@ -1,4 +1,4 @@
-const signUpButton = document.querySelector(".signupbtn");
+
 
 async function newSignUp () {
     event.preventDefault();
@@ -14,7 +14,7 @@ async function newSignUp () {
     console.log(age)
     console.log(gender)
 
-    fetch ('/api/users/signup', {
+  const response =  await fetch ('/api/users/signup', {
         method: 'POST',
         body: JSON.stringify({
             email,
@@ -34,21 +34,7 @@ async function newSignUp () {
     }
 }
 
-
-
-signUpButton.addEventListener("submit", newSignUp)  
-    
-    // event.preventDefault();
-
-    // const username = loginForm.username.value;
-    // const password = loginForm.password.value;
-
-    // if (user === "user" && password === "web_dev") {
-    //     alert("You are now logged in!");
-    //     location.reload();
-    // } else {
-    //     alert("You are not logged in!");
-    //     loginErrorMessage.style.opacity =1;
-    // }
-
+document
+  .querySelector(".modal-content")
+  .addEventListener("submit", newSignUp);
 
