@@ -33,14 +33,20 @@ router.post('/login', (req, res) => {
       return;
     }
 
-    const validPassword = userLogin.checkPassword(req.body.password);
+    const validPassword = userLogIn.checkPassword(req.body.password);
 
     if (!validPassword) {
       res.status(400).json({ message: 'Incorrect password!' });
       return;
     }
+// TODO: ask matt about res.json
+    req.session.save(() => {
+      req.session.user_id = userLogIn.id;
+      req.session.email = userLogIn.email;
+      req.session.loggedIn= true;
+      res.json({ user: userLogIn, message: 'You are now logged in!' });
+    })
 
-    res.json({ user: userLogIn, message: 'You are now logged in!' });
   });
 });
 
