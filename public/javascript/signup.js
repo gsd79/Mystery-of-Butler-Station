@@ -1,18 +1,12 @@
 const signUpButton = document.querySelector(".signupbtn");
 
 async function newSignUp () {
-    event.preventDefault();
 
     const email = document.querySelector('#email-sign-up').value.trim();
     const password = document.querySelector('#password-sign-up').value.trim();
     const name = document.querySelector('#name-sign-up').value.trim();
     const age = document.querySelector('#age').value.trim();
     const gender = document.querySelector('#gender-sign-up').value.trim();
-    console.log(email)
-    console.log(password)
-    console.log(name)
-    console.log(age)
-    console.log(gender)
 
     fetch ('/api/users/signup', {
         method: 'POST',
@@ -26,17 +20,19 @@ async function newSignUp () {
         headers: {
             'Content-Type': 'application/json'
         }
-    })
-    if (response.ok){
-        document.location.replace('/login')
-    } else {
-        console.log('You are NOT signed up')
-    }
+    }) 
+        .then((response) => {
+            if (response.ok){
+                document.location.replace('/login')
+            } else {
+                console.log('You are NOT signed up')
+            }
+        })
 }
 
 
 
-signUpButton.addEventListener("submit", newSignUp)  
+signUpButton.addEventListener("submit", newSignUp())  
     
     // event.preventDefault();
 
