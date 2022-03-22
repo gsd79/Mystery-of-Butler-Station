@@ -10,7 +10,7 @@ async function newLogIn (event) {
     const email = document.querySelector('input[name="email"]').value;
     const password = document.querySelector('input[name="password"]').value;
 
-    const response = await fetch (`/api/login`, {
+ fetch (`/api/users/login`, {
         method: 'POST',
         body: JSON.stringify({
             email,
@@ -21,26 +21,26 @@ async function newLogIn (event) {
         }
     });
 
-    if (response.okay){
-        console.log('You have been signed up!')
+    if (response.ok){
+        document.location.replace('/character')
     } else {
-        console.log('You are NOT signed up')
+        console.log('You are NOT logged in')
     }
 }
 
 
-loginButton.addEventListener("click", (event) => { 
-    console.log("login")
-    event.preventDefault();
+// loginButton.addEventListener("click", (event) => { 
+//     console.log("login")
+//     event.preventDefault();
 
-    const username = loginForm.username.value;
-    const password = loginForm.password.value;
+//     const username = loginForm.username.value;
+//     const password = loginForm.password.value;
 
-    if (user === "user" && password === "web_dev") {
-        alert("You are now logged in!");
-        location.reload();
-    } else {
-        alert("You are not logged in!");
-        loginErrorMessage.style.opacity =1;
-    }
-})
+//     if (user === "user" && password === "web_dev") {
+//         alert("You are now logged in!");
+//         location.reload();
+//     } else {
+//         alert("You are not logged in!");
+//         loginErrorMessage.style.opacity =1;
+//     }
+// })

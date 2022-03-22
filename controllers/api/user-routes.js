@@ -40,6 +40,12 @@ router.post('/login', (req, res) => {
       return;
     }
 
+    req.session.save(() => {
+      req.session.user_id = userLogIn.id;
+      req.session.email = userLogIn.email;
+      req.session.loggedIn= true;
+    })
+
     res.json({ user: userLogIn, message: 'You are now logged in!' });
   });
 });
