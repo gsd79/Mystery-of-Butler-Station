@@ -8,12 +8,7 @@ async function newSignUp () {
     const name = document.querySelector('#name-sign-up').value.trim();
     const age = document.querySelector('#age').value.trim();
     const gender = document.querySelector('#gender-sign-up').value.trim();
-    console.log(email)
-    console.log(password)
-    console.log(name)
-    console.log(age)
-    console.log(gender)
-
+   
   const response =  await fetch ('/api/users/signup', {
         method: 'POST',
         body: JSON.stringify({
