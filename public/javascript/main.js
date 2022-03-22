@@ -1,7 +1,10 @@
-//need to work on scrolling, finish Spaceship layout, get doors installed.
+//TODO CHANGE MAP FLOW 
+//TODO CHANGE DOORS TO 7 8 9
+//TODO set up Coordinate based enter Eventlistener
+//TODO list of second questions and 3rd questions
 
 // const { IncrementWrapStencilOp } = require("three");
-
+  
 (function () {
   "use strict";
 
@@ -13,6 +16,7 @@
     right: false,
     up: false,
     enter: false,
+    mouseDown: false,
 
     keyUpDown: function (event) {
       var key_state = event.type == "keydown" ? true : false;
@@ -141,8 +145,8 @@
         velocity_x: 0,
         velocity_y: 0,
         width: 10,
-        x: 160 - 16,
-        y: 100 - 16,
+        x: 80,
+        y: 100,
 
         // These functions just make it easy to read the collision code
         get bottom() {
@@ -175,7 +179,7 @@
         color: "#0000FF", //npc is blue
         height: 10,
         width: 10,
-        x: 120 - 16,
+        x: 100 - 16,
         y: 100 - 16,
 
         // These functions just make it easy to read the collision code
@@ -206,37 +210,37 @@
       },
 
       world: {
-        columns: 24,
+        columns: 23,
         rows: 24,
         tile_size: 20,
 
         map: [
-          1, 1, 1, 1, 5, 5, 5, 5, 5, 5, 5, 5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-          1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-          0, 3, 2, 0, 0, 0, 5, 5, 9, 5, 5, 9, 9, 5, 0, 5, 5, 5, 5, 0, 0, 5, 5,
-          5, 5, 3, 2, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0, 0,
-          0, 0, 0, 3, 2, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0,
-          0, 0, 0, 0, 3, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 5, 0, 0,
-          0, 0, 0, 0, 0, 3, 2, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 5, 0,
-          0, 0, 0, 0, 0, 0, 3, 2, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 5,
-          0, 0, 0, 0, 0, 0, 0, 3, 2, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 0,
-          5, 0, 0, 0, 0, 0, 0, 0, 3, 2, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 5, 0, 0,
-          0, 5, 5, 5, 5, 5, 0, 5, 5, 5, 2, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 5, 0,
-          0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 3, 2, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 5,
-          0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 3, 5, 5, 5, 0, 5, 5, 5, 5, 5, 0, 5,
-          5, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 3, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-          0, 5, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 3, 2, 0, 0, 0, 0, 0, 0, 0, 0,
-          0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 3, 2, 0, 0, 0, 0, 0, 0, 0,
-          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 2, 0, 0, 0, 0, 0, 0,
-          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 2, 0, 0, 0, 0, 0,
-          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 2, 0, 0, 0, 0,
-          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 2, 0, 0, 0,
-          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 2, 0, 0,
-          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 2, 0,
-          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 2,
-          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
+          5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
+          5, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5,
+          5, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5,
+          5, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5,
+          5, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5,
+          5, 0, 0, 0, 0, 5, 0, 0, 0, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5,
+          5, 5, 5, 9, 5, 5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5,
+          5, 0, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 5,
+          5, 0, 0, 0, 0, 5, 5, 5, 5, 5, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5,
+          5, 0, 0, 0, 0, 9, 0, 0, 0, 9, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5,
+          5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
           4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,
-          4,
+          
         ],
 
         // 1s are ceiling tiles
@@ -569,14 +573,15 @@
 
   display.buffer.canvas.height = 300;
   display.buffer.canvas.width = 420;
-
+    
+  
   window.addEventListener("resize", display.resize);
   window.addEventListener("keydown", controller.keyUpDown);
   window.addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
       validate(event);
     }
-
+    var timerId;
     async function validate(event) {
       fetch("/api/questions/1").then((response) => {
         response.json().then((questions) => {
@@ -591,10 +596,20 @@
            getQuestion(formatQuestions);
         });
       });
-    }
+    
+      fetch("/api/progress/check/1").then((response) => {
+        response.json().then((progressArr) => {
+          const formatProgress = progressArr;
+          if(formatProgress.length === 4) {
+            alert("You get a clue")
+            quizEnd();
+            }
+          })
+        })
+      }
   });
-
-
+  var timerEl = document.getElementById("timer");
+  var time = 20;
   function countDownTimer() {
     time --;
     timerEl.textContent= "Time: " + time;
@@ -611,6 +626,7 @@
   //hide present question
   var questionsEl = document.getElementById("quizScreen");
   questionsEl.setAttribute("class", "hide");
+  game.loop();
   };
 
   window.addEventListener("keyup", controller.keyUpDown);

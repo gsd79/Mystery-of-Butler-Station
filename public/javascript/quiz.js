@@ -53,13 +53,9 @@ let currentQuestionIndex = 0;
       getQuestion(quizQuestions);
     }
     //store correct answers
-    let getAnswers = JSON.parse(localStorage.getItem(getAnswers)) || [];
-    //  console.log(localStorage.getItem("correctAnswers"));
-    getAnswers.push(getAnswers);
-    console.log(getAnswers);
-    // localStorage.setItem("correctAnswers", JSON.stringify("correctAnswers"));
+    
   }
 
-  function quizEnd() {
-    alert("QUIZ IS DONE");
-  }
+  // function quizEnd() {
+  //   alert("QUIZ IS DONE");
+  // }
