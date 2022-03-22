@@ -1,33 +1,23 @@
-<form class="login-form">
-  <div>
-    <label for="email-login">email:</label>
-    <input type="text" id="email-login" />
-  </div>
-  <div>
-    <label for="password-login">password:</label>
-    <input type="password" id="password-login" />
-  </div>
-  <div>
-    <button type="submit">login</button>
-  </div>
-</form>
+<link rel="stylesheet" href="./stylesheets/murder-login.css" />
+<link rel="stylesheet" href="./stylesheets/style.css" />
+<header>
+        <div id="title" class="title" data-text="MYSTERY OF BUTLER STATION">MYSTERY OF BUTLER STATION</div>
+    </header>
 
-<form class="signup-form">
-  <div>
-    <label for="username-signup">username:</label>
-    <input type="text" id="username-signup" />
-  </div>
-  <div>
-    <label for="email-signup">email:</label>
-    <input type="text" id="email-signup" />
-  </div>
-  <div>
-    <label for="password-signup">password:</label>
-    <input type="password" id="password-signup" />
-  </div>
-  <div>
-    <button type="submit">signup</button>
-  </div>
-</form>
+    <main id="main container">
+        
+        
+        <div id="login-error-message-container"></div>
+            <p id="login-error-message">Invalid username <span id="error message second line">and/or password</span></p>
+        </div>
+        
+        <form id="login-form">
+            <input type="text" name="username" id="username-field" class="login-form-field" placeholder="Username">
+            <input type="password" name="password" id="password-field" class="login-form-field" placeholder="Password">
+            <input type="submit" value="Login" class="login-form-submit">
+        </form>
+        
+        <a href="/signup">
+            <button class="button">Create Account</button></a>
 
 <script src="/javascript/login.js"></script>
