@@ -3,18 +3,18 @@ const signUpButton = document.querySelector(".signupbtn");
 async function newSignUp () {
     event.preventDefault();
 
-    const email = document.querySelector('input[name="email"]').value;
-    const password = document.querySelector('input[name="password"]').value;
-    const name = document.querySelector('input[name="name"]').value;
-    const age = document.querySelector('input[name="age"]').value;
-    const gender = document.querySelector('input[name="gender"]').value;
+    const email = document.querySelector('#email-sign-up').value.trim();
+    const password = document.querySelector('#password-sign-up').value.trim();
+    const name = document.querySelector('#name-sign-up').value.trim();
+    const age = document.querySelector('#age').value.trim();
+    const gender = document.querySelector('#gender-sign-up').value.trim();
     console.log(email)
     console.log(password)
     console.log(name)
     console.log(age)
     console.log(gender)
 
-    fetch (`/api/users/signup`, {
+    fetch ('/api/users/signup', {
         method: 'POST',
         body: JSON.stringify({
             email,
