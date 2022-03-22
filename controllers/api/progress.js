@@ -23,6 +23,7 @@ router.post('/', (req, res) => {
     question_id: req.body.question_id,
     isAnswerCorrect: req.body.isAnswerCorrect
   })
+    //req.session(save) 
     .then(dbProgressData => res.json(dbProgressData))
     .catch(err => {
       console.log(err);

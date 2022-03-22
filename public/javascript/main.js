@@ -591,6 +591,15 @@
            getQuestion(formatQuestions);
         });
       });
+      fetch("/api/progress/check/1").then((response) => {
+        response.json().then((progressResponse) => {
+          const progressArr = progressResponse;
+          if (progressArr.length === 3) {
+            // next npc dialogue with hint
+            // logic to change the door to open
+          }
+        })
+      })
     }
   });
 
