@@ -12,19 +12,13 @@ router.post('/signup', (req, res) => {
     age: req.body.age,
     gender: req.body.gender
   })
-    .then(userData => {
-      req.session.save(() => {
-        req.session.user_id = userData.id;
-        req.session.email = userData.email;
-        req.session.loggedIn = true;
-
-        res.json(userData);
+    .then(userSignUp => {
+      res.json(userSignUp);
     })
     .catch(err => {
       console.log(err);
       res.status(500).json(err);
     });
-  });
 });
 
 // log in route
@@ -53,7 +47,7 @@ router.post('/login', (req, res) => {
       res.json({ user: userData, message: 'You are now logged in!' }
       );
     });
-    // console.log(req.session.user_id) this will show user id of whoever is logging in
+    console.log(req.session.user_id) //this will show user id of whoever is logging in
   });
 });
 

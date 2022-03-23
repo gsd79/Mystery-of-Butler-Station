@@ -1,5 +1,3 @@
-
-
 async function newSignUp (event) {
     event.preventDefault();
 
@@ -8,8 +6,8 @@ async function newSignUp (event) {
     const name = document.querySelector('#name-sign-up').value.trim();
     const age = document.querySelector('#age').value.trim();
     const gender = document.querySelector('#gender-sign-up').value.trim();
-
-    const response =  await fetch ('/api/users/signup', {
+   
+  const response =  await fetch ('/api/users/signup', {
         method: 'POST',
         body: JSON.stringify({
             email,
@@ -18,9 +16,10 @@ async function newSignUp (event) {
             age,
             gender
         }),
-        headers: { 'Content-Type': 'application/json' }
-    });
-
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
     if (response.ok){
         document.location.replace('/login')
     } else {
@@ -28,5 +27,7 @@ async function newSignUp (event) {
     }
 }
 
-document.querySelector(".modal-content").addEventListener("submit", newSignUp);
+document
+  .querySelector(".modal-content")
+  .addEventListener("submit", newSignUp);
 
