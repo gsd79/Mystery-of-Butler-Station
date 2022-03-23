@@ -1,7 +1,10 @@
-//need to work on scrolling, finish Spaceship layout, get doors installed.
+//TODO CHANGE MAP FLOW 
+//TODO CHANGE DOORS TO 7 8 9
+//TODO set up Coordinate based enter Eventlistener
+//TODO list of second questions and 3rd questions
 
 // const { IncrementWrapStencilOp } = require("three");
-
+  
 (function () {
   "use strict";
 
@@ -13,6 +16,7 @@
     right: false,
     up: false,
     enter: false,
+    mouseDown: false,
 
     keyUpDown: function (event) {
       var key_state = event.type == "keydown" ? true : false;
@@ -34,6 +38,9 @@
           controller.enter = key_state;
           //console.log("enter key pressed");
           break;
+          // case click:
+          //   controller.mouse = key_state;
+          //   console.log('mouse clicked');
       }
     },
   };
@@ -43,7 +50,7 @@
     context: document.querySelector("canvas").getContext("2d"),
     output: document.querySelector("p"),
 
-    render: function () {
+    tile: function () {
       for (let index = game.world.map.length - 1; index > -1; --index) {
         if (game.world.map[index] > 0 && game.world.map[index] !== 9) {
           this.buffer.fillStyle = "#2bc22b";
@@ -68,18 +75,7 @@
       // game.player.width,
       // game.player.height
 
-      //draws map object
-      // this.context.drawImage(
-      //  this.buffer.canvas,
-      // 0,
-      //  0,
-      // this.buffer.canvas.width,
-      // this.buffer.canvas.height,
-      //  0,
-      //  0,
-      // this.context.canvas.width,
-      //  this.context.canvas.height
-      // );
+      
 
       this.buffer.fillStyle = game.player.color;
       this.buffer.fillRect(
@@ -88,13 +84,21 @@
         game.player.width,
         game.player.height
       );
-
+        //npc 1
       this.buffer.fillStyle = game.npc.color;
       this.buffer.fillRect(
         game.npc.x,
         game.npc.y,
         game.npc.width,
         game.npc.height
+      );
+//npc 2 
+      this.buffer.fillStyle = game.npc_2.color;
+      this.buffer.fillRect(
+        game.npc_2.x,
+        game.npc_2.y,
+        game.npc_2.width,
+        game.npc_2.height
       );
 
       
@@ -109,6 +113,18 @@
         0,
         this.context.canvas.width,
         this.context.canvas.height
+      );
+      //draws map object
+      this.context.drawImage(
+       this.buffer.canvas,
+      0,
+      0,
+      this.buffer.canvas.width,
+      this.buffer.canvas.height,
+       0,
+       0,
+      this.context.canvas.width,
+       this.context.canvas.height
       );
     },
 
@@ -125,7 +141,7 @@
         display.context.canvas.width * 0.65
       );
 
-      display.render();
+      display.tile();
     },
   }),
     (game = {
@@ -136,13 +152,13 @@
       player: {
         color: "#ff9900",
         height: 10,
-        old_x: 160, // these are what you should take note of. Don't worry, it's useful
-        old_y: 160, // to keep track of old positions for many physics methods. These aren't one trick pony's.
+        old_x: 160, 
+        old_y: 160, 
         velocity_x: 0,
         velocity_y: 0,
         width: 10,
-        x: 160 - 16,
-        y: 100 - 16,
+        x: 80,
+        y: 100,
 
         // These functions just make it easy to read the collision code
         get bottom() {
@@ -174,8 +190,12 @@
       npc: {
         color: "#0000FF", //npc is blue
         height: 10,
+        old_x: 160, 
+        old_y: 160, 
+        velocity_x: 0,
+        velocity_y: 0,
         width: 10,
-        x: 120 - 16,
+        x: 100 - 16,
         y: 100 - 16,
 
         // These functions just make it easy to read the collision code
@@ -205,38 +225,76 @@
         },
       },
 
+      npc_2: {
+        color: "#ff0000", //npc_2 is red
+        height: 10,
+        old_x: 160, 
+        old_y: 160, 
+        velocity_x: 0,
+        velocity_y: 0,
+        width: 10,
+        x: 40 -16,
+        y: 170 -16,
+
+        // These functions just make it easy to read the collision code
+        get bottom() {
+          return this.y + this.height;
+        },
+        get oldBottom() {
+          return this.old_y + this.height;
+        },
+        get left() {
+          return this.x;
+        }, // kind of pointless, but used
+        get oldLeft() {
+          return this.old_x;
+        }, // to help visualize the collision methods
+        get right() {
+          return this.x + this.width;
+        },
+        get oldRight() {
+          return this.old_x + this.width;
+        },
+        get top() {
+          return this.y;
+        }, // equally pointless as left side calculations
+        get oldTop() {
+          return this.old_y;
+        },
+      },
+
       world: {
-        columns: 24,
+        columns: 23,
         rows: 24,
         tile_size: 20,
 
         map: [
-          1, 1, 1, 1, 5, 5, 5, 5, 5, 5, 5, 5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-          1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-          0, 3, 2, 0, 0, 0, 5, 5, 9, 5, 5, 9, 9, 5, 0, 5, 5, 5, 5, 0, 0, 5, 5,
-          5, 5, 3, 2, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0, 0,
-          0, 0, 0, 3, 2, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0,
-          0, 0, 0, 0, 3, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 5, 0, 0,
-          0, 0, 0, 0, 0, 3, 2, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 5, 0,
-          0, 0, 0, 0, 0, 0, 3, 2, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 5,
-          0, 0, 0, 0, 0, 0, 0, 3, 2, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 0,
-          5, 0, 0, 0, 0, 0, 0, 0, 3, 2, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 5, 0, 0,
-          0, 5, 5, 5, 5, 5, 0, 5, 5, 5, 2, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 5, 0,
-          0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 3, 2, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 5,
-          0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 3, 5, 5, 5, 0, 5, 5, 5, 5, 5, 0, 5,
-          5, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 3, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-          0, 5, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 3, 2, 0, 0, 0, 0, 0, 0, 0, 0,
-          0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 3, 2, 0, 0, 0, 0, 0, 0, 0,
-          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 2, 0, 0, 0, 0, 0, 0,
-          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 2, 0, 0, 0, 0, 0,
-          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 2, 0, 0, 0, 0,
-          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 2, 0, 0, 0,
-          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 2, 0, 0,
-          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 2, 0,
-          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 2,
-          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
+          5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
+          5, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5,
+          5, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5,
+          5, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5,
+          5, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5,
+          5, 0, 0, 0, 0, 5, 0, 0, 0, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5,
+          5, 5, 5, 9, 5, 5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5,
+          5, 0, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 5,
+          5, 0, 0, 0, 0, 5, 5, 5, 5, 5, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5,
+          5, 0, 0, 0, 0, 9, 0, 0, 0, 9, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5,
+          5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
           4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,
-          4,
+          
         ],
 
         // 1s are ceiling tiles
@@ -290,6 +348,7 @@
           }
           this.bottomCollision(object, row); // No need to early out on the last check.
         },
+
         9: function (object, row, column) {
           if (this.topCollision(object, row)) {
             return;
@@ -302,6 +361,21 @@
           }
           this.bottomCollision(object, row);
         },
+
+        npc: function (object, row, column) {
+          if (this.topCollision(object, row)) {
+            return;
+          } // Make sure to early out
+          if (this.leftCollision(object, column)) {
+            return;
+          } // if a collision is detected.
+          if (this.rightCollision(object, column)) {
+            return;
+          }
+          this.bottomCollision(object, row);
+        },
+        
+        
 
         leftCollision(object, column) {
           if (object.x - object.old_x > 0) {
@@ -318,6 +392,8 @@
 
           return false;
         },
+
+        
 
         rightCollision(object, column) {
           if (object.x - object.old_x < 0) {
@@ -561,7 +637,7 @@
         game.player.velocity_x *= 0.9;
         game.player.velocity_y *= 0.9;
 
-        display.render();
+        display.tile();
 
         window.requestAnimationFrame(game.loop);
       },
@@ -569,6 +645,8 @@
 
   display.buffer.canvas.height = 300;
   display.buffer.canvas.width = 420;
+    
+ 
 
   window.addEventListener("resize", display.resize);
   window.addEventListener("keydown", controller.keyUpDown);
@@ -576,7 +654,7 @@
     if (event.key === "Enter") {
       validate(event);
     }
-
+   
     async function validate(event) {
       fetch("/api/questions/1").then((response) => {
         response.json().then((questions) => {
@@ -591,27 +669,35 @@
            getQuestion(formatQuestions);
         });
       });
-    }
+      }
   });
-
-
-  function countDownTimer() {
-    time --;
-    timerEl.textContent= "Time: " + time;
-    // console.log(time);
-
-    if(time <= 0) {
-      quizEnd();
+  let tile = game.world.map
+   // event listener for click event
+   function getMousePosition(canvas, event) {
+    let rect = canvas.getBoundingClientRect();
+    let x = event.clientX - rect.left;
+    let y = event.clientY - rect.top;
+    if(tile === 5){
+    console.log("current tile is " + tile);
+    } if (tile === 9){
+      console.log("current tile is " + tile);
+    }else{
+    console.log("Coordinate x: " + x, 
+                "Coordinate y: " + y);
     }
-  };
+    // console.log("Current Tile: " + tile);                
+}
 
-  function quizEnd() {
-         //clear screen
-  clearInterval(timerId);
-  //hide present question
-  var questionsEl = document.getElementById("quizScreen");
-  questionsEl.setAttribute("class", "hide");
-  };
+let canvasElem = document.querySelector("canvas");
+  
+canvasElem.addEventListener("mousedown", function(e)
+{
+    getMousePosition(canvasElem, e);
+});
+
+
+
+
 
   window.addEventListener("keyup", controller.keyUpDown);
 
