@@ -4,7 +4,9 @@ let currentQuestionIndex = 0;
   var choicesEl = document.getElementById("choices");
   var feedbackEl = document.getElementById("feedback");
   var startBtn = document.getElementById("start");
-
+  var timerEl = document.getElementById("timer");
+  var time = 20;
+  var timerId;
   function getQuestion(questions) {
     let currentQuestion = questions[currentQuestionIndex];
 
@@ -56,6 +58,21 @@ let currentQuestionIndex = 0;
     
   }
 
-  // function quizEnd() {
-  //   alert("QUIZ IS DONE");
-  // }
+ 
+  function countDownTimer() {
+    time --;
+    timerEl.textContent= "Time: " + time;
+    // console.log(time);
+
+    if(time <= 0) {
+      quizEnd();
+    }
+  };
+
+  function quizEnd() {
+    //clear screen
+clearInterval(timerId);
+//hide present question
+var questionsEl = document.getElementById("quizScreen");
+questionsEl.setAttribute("class", "hide");
+};
