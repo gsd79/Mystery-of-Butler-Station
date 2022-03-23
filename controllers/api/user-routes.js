@@ -13,12 +13,18 @@ router.post('/signup', (req, res) => {
     gender: req.body.gender
   })
     .then(userSignUp => {
-      res.json(userSignUp);
+      req.session.save(() => {
+        req.session.user_id = userLogIn.id;
+        req.session.email = userLogIn.email;
+        req.session.loggedIn = true;
+
+        res.json(userSignUp);
     })
     .catch(err => {
       console.log(err);
       res.status(500).json(err);
     });
+  });
 });
 
 // log in route
@@ -43,10 +49,10 @@ router.post('/login', (req, res) => {
     req.session.save(() => {
       req.session.user_id = userLogIn.id;
       req.session.email = userLogIn.email;
-      req.session.loggedIn= true;
-      res.json({ user: userLogIn, message: 'You are now logged in!' });
-    })
-
+      req.session.loggedIn = true;
+      res.json({ user: userLogIn, message: 'You are now logged in!' }
+      );
+    });
   });
 });
 
@@ -64,15 +70,14 @@ router.get('/', (req, res) => {
 
 // TODO: WHEN PLAYER CHOOSES POST WHICH CHARACTER TO CHARACTER MODEL -- LINKED TO USER
 
-router.post('/:id', (req, res) => {
-  //TODO check the session instead so character fetch goes off req.sessions.userid instead
+router.post('/select-character', withAuth, (req, res) => {
     User.update(
       {
       character_id: req.body.character_id,
       }, 
       {
         where: {
-          id: req.params.id
+          id: req.session.user_id
         }
       })
       .then(dbUserData =>
@@ -92,7 +97,7 @@ router.post('/:id', (req, res) => {
   // }
 });
 
-// PUT ROUTE TO NEW GAME/RESET PROGRESS MODEL?
+// TODO: PUT ROUTE TO NEW GAME/RESET PROGRESS MODEL?
 // router.post('/', (req, res) => {
 //     // expects {username: 'Lernantino', email: 'lernantino@gmail.com', password: 'password1234'}
 //     User.create({
