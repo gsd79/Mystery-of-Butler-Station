@@ -1,20 +1,15 @@
-const signUpButton = document.querySelector(".signupbtn");
+
 
 async function newSignUp () {
     event.preventDefault();
 
-    const email = document.querySelector('input[name="email"]').value;
-    const password = document.querySelector('input[name="password"]').value;
-    const name = document.querySelector('input[name="name"]').value;
-    const age = document.querySelector('input[name="age"]').value;
-    const gender = document.querySelector('input[name="gender"]').value;
-    console.log(email)
-    console.log(password)
-    console.log(name)
-    console.log(age)
-    console.log(gender)
-
-    fetch (`/api/users/signup`, {
+    const email = document.querySelector('#email-sign-up').value.trim();
+    const password = document.querySelector('#password-sign-up').value.trim();
+    const name = document.querySelector('#name-sign-up').value.trim();
+    const age = document.querySelector('#age').value.trim();
+    const gender = document.querySelector('#gender-sign-up').value.trim();
+   
+  const response =  await fetch ('/api/users/signup', {
         method: 'POST',
         body: JSON.stringify({
             email,
@@ -34,21 +29,7 @@ async function newSignUp () {
     }
 }
 
-
-
-signUpButton.addEventListener("submit", newSignUp)  
-    
-    // event.preventDefault();
-
-    // const username = loginForm.username.value;
-    // const password = loginForm.password.value;
-
-    // if (user === "user" && password === "web_dev") {
-    //     alert("You are now logged in!");
-    //     location.reload();
-    // } else {
-    //     alert("You are not logged in!");
-    //     loginErrorMessage.style.opacity =1;
-    // }
-
+document
+  .querySelector(".modal-content")
+  .addEventListener("submit", newSignUp);
 

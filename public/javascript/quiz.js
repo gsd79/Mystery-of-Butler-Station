@@ -4,7 +4,9 @@ let currentQuestionIndex = 0;
   var choicesEl = document.getElementById("choices");
   var feedbackEl = document.getElementById("feedback");
   var startBtn = document.getElementById("start");
-
+  var timerEl = document.getElementById("timer");
+  var time = 20;
+  var timerId;
   function getQuestion(questions) {
     let currentQuestion = questions[currentQuestionIndex];
 
@@ -53,13 +55,24 @@ let currentQuestionIndex = 0;
       getQuestion(quizQuestions);
     }
     //store correct answers
-    let getAnswers = JSON.parse(localStorage.getItem(getAnswers)) || [];
-    //  console.log(localStorage.getItem("correctAnswers"));
-    getAnswers.push(getAnswers);
-    console.log(getAnswers);
-    // localStorage.setItem("correctAnswers", JSON.stringify("correctAnswers"));
+    
   }
 
+ 
+  function countDownTimer() {
+    time --;
+    timerEl.textContent= "Time: " + time;
+    // console.log(time);
+
+    if(time <= 0) {
+      quizEnd();
+    }
+  };
+
   function quizEnd() {
-    alert("QUIZ IS DONE");
-  }
+    //clear screen
+clearInterval(timerId);
+//hide present question
+var questionsEl = document.getElementById("quizScreen");
+questionsEl.setAttribute("class", "hide");
+};
