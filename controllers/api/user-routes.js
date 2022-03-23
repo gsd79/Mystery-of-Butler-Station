@@ -12,13 +12,13 @@ router.post('/signup', (req, res) => {
     age: req.body.age,
     gender: req.body.gender
   })
-    .then(userSignUp => {
+    .then(userData => {
       req.session.save(() => {
-        req.session.user_id = userLogIn.id;
-        req.session.email = userLogIn.email;
+        req.session.user_id = userData.id;
+        req.session.email = userData.email;
         req.session.loggedIn = true;
 
-        res.json(userSignUp);
+        res.json(userData);
     })
     .catch(err => {
       console.log(err);
@@ -33,13 +33,13 @@ router.post('/login', (req, res) => {
     where: {
       email: req.body.email
     }
-  }).then(userLogIn => {
-    if (!userLogIn) {
+  }).then(userData => {
+    if (!userData) {
       res.status(400).json({ message: 'No user with that email address!' });
       return;
     }
 
-    const validPassword = userLogIn.checkPassword(req.body.password);
+    const validPassword = userData.checkPassword(req.body.password);
 
     if (!validPassword) {
       res.status(400).json({ message: 'Incorrect password!' });
@@ -47,12 +47,13 @@ router.post('/login', (req, res) => {
     }
 // TODO: ask matt about res.json
     req.session.save(() => {
-      req.session.user_id = userLogIn.id;
-      req.session.email = userLogIn.email;
+      req.session.user_id = userData.id;
+      req.session.email = userData.email;
       req.session.loggedIn = true;
-      res.json({ user: userLogIn, message: 'You are now logged in!' }
+      res.json({ user: userData, message: 'You are now logged in!' }
       );
     });
+    // console.log(req.session.user_id) this will show user id of whoever is logging in
   });
 });
 
