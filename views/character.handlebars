@@ -1,3 +1,5 @@
+<div id="">
+
 <link rel="stylesheet" href="./stylesheets/character-selection.css" />
 <header>
       <div id="title" class="title" data-text="PLEASE SELECT YOUR CHARACTER">
@@ -5,28 +7,30 @@
       </div>
     </header>
 
-    <main class="container">
-      <div class="panel" style="background-image: url('./images/my_character2.png')">
+    <div class="container">
+      <div id="engineer" class="panel" data-value= "2" style="background-image: url('./images/my_character2.png')">
         <h3>Engineer</h3>
       </div>
 
-      <div class="panel" style="background-image: url('./images/my_character0.png')">
+      <div class="panel" data-value= "1" style="background-image: url('./images/my_character0.png')">
         <h3>Captain</h3>
       </div>
 
-      <div class="panel" style="background-image: url('./images/my_character1.png')">
+      <div class="panel" data-value= "3" style="background-image: url('./images/my_character1.png')">
         <h3>Pilot</h3>
       </div>
 
-      <div class="panel" style="background-image: url('./images/my_character.png')">
+      <div class="panel" data-value= "4"style="background-image: url('./images/my_character.png')">
         <h3>Gunner</h3>
       </div><p>
-    </main>
+    </div>
     <div class="button-container">
-    <button class="playbutton">
-      <a href="../src/index.html"> Click Here To Play</a>
+    <button id="playbtn" class="playbutton">
+       Click Here To Play
     </button>
     </div>
 
+</div>
 
-    <script src="./assets/javascript/character-selection.js"></script>
+
+    <script src="/javascript/character-selection.js"></script>
