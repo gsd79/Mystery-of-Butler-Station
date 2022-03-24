@@ -62,7 +62,7 @@ router.get('/', (req, res) => {
     });
 });
 
-// TODO: WHEN PLAYER CHOOSES POST WHICH CHARACTER TO CHARACTER MODEL -- LINKED TO USER
+// WHEN PLAYER CHOOSES POST WHICH CHARACTER TO CHARACTER MODEL -- LINKED TO USER
 
 router.post('/character-selection', (req, res) => {
   //TODO check the session
