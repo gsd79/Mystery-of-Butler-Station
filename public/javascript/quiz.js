@@ -33,15 +33,19 @@ let currentQuestionIndex = 0;
       //console.log("choiceNode", choiceNode)
     });
   }
-
+  
   function questionClick(quizQuestions, answer) {
     if (answer !== quizQuestions[currentQuestionIndex].answer) {
       //displays right or wrong answer
       feedbackEl.textContent = "Wrong";
     } else {
       feedbackEl.textContent = "Correct";
+    } 
+    if (feedbackEl.textContent === "Wrong") {
+      var isAnswerCorrect = false
+    } else {
+      var isAnswerCorrect = true;
     }
-
     feedbackEl.removeAttribute("class");
 
     // move to next question
@@ -53,6 +57,7 @@ let currentQuestionIndex = 0;
       //alert("Quiz is over");
     } else {
       getQuestion(quizQuestions);
+      return isAnswerCorrect;
     }
     //store correct answers
     

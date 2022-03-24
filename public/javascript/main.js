@@ -669,10 +669,23 @@
            getQuestion(formatQuestions);
         });
       });
+       fetch ('/api/progress', {
+        method: 'POST',
+        body: JSON.stringify({
+            user_id: req.session.user_id,
+            // level_id,
+            // question_id,
+            isAnswerCorrect: passAnswer,
+        }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    
       fetch("/api/progress/check").then((response) => {
         response.json().then((progressResponse) => {
           const progressArr = progressResponse;
-          if (progressArr.length === 3) {
+          if (progressArr.length === 1) {
             alert("CORRECT!")
             // next npc dialogue with hint
             // logic to change the door to open
@@ -680,31 +693,9 @@
         })
       })
     }
+
   });
-  let tile = game.world.map
-   // event listener for click event
-   function getMousePosition(canvas, event) {
-    let rect = canvas.getBoundingClientRect();
-    let x = event.clientX - rect.left;
-    let y = event.clientY - rect.top;
-    if(tile === 5){
-    console.log("current tile is " + tile);
-    } if (tile === 9){
-      console.log("current tile is " + tile);
-    }else{
-    console.log("Coordinate x: " + x, 
-                "Coordinate y: " + y);
-    }
-    // console.log("Current Tile: " + tile);                
-}
-
-let canvasElem = document.querySelector("canvas");
-  
-canvasElem.addEventListener("mousedown", function(e)
-{
-    getMousePosition(canvasElem, e);
-});
-
+ 
 
 
 
