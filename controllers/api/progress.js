@@ -16,11 +16,12 @@ router.get('/', (req, res) => {
 
 // POST ROUTE TO KEEP TRACK OF NUMBER OF QUESTIONS ANSWERED CORRECTLY (IF 3 CORRECT, THEN GIVE CLUE AND KEY)
 router.post('/', (req, res) => {
+  console.log("save progress api", req.body);
   // expects {username: 'Lernantino', email: 'lernantino@gmail.com', password: 'password1234'}
   Progress.create({
     user_id: req.session.user_id,
-    // level_id: req.body.level_id,
-    // question_id: req.body.question_id,
+    level_id: req.body.level_id,
+    question_id: req.body.question_id,
     isAnswerCorrect: req.body.isAnswerCorrect
   })
     .then(dbProgressData => res.json(dbProgressData))

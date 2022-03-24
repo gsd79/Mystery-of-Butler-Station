@@ -35,17 +35,18 @@ let currentQuestionIndex = 0;
   }
   
   function questionClick(quizQuestions, answer) {
+    let isAnswerCorrect = false;
     if (answer !== quizQuestions[currentQuestionIndex].answer) {
       //displays right or wrong answer
       feedbackEl.textContent = "Wrong";
     } else {
       feedbackEl.textContent = "Correct";
+      isAnswerCorrect = true;
     } 
-    if (feedbackEl.textContent === "Wrong") {
-      var isAnswerCorrect = false
-    } else {
-      var isAnswerCorrect = true;
-    }
+
+
+    saveProgress(quizQuestions[currentQuestionIndex].id, isAnswerCorrect)
+  
     feedbackEl.removeAttribute("class");
 
     // move to next question
@@ -62,8 +63,43 @@ let currentQuestionIndex = 0;
     //store correct answers
     
   }
+  async function saveProgress(question_id, isAnswerCorrect) {
+      
+    // const user_id = req.session.user_id;
+     fetch ('/api/progress', {
+      method: 'POST',
+      body: JSON.stringify({
+          user_id:3,
+          level_id:1,
+          question_id,
+          isAnswerCorrect
+      }),
+      headers: {
+          'Content-Type': 'application/json'
+      }
+  })
+  .then((response) => {
+    if(response.ok) {
+      fetch("/api/progress/check").then((response) => {
+        response.json().then((progressResponse) => {
+          const progressArr = progressResponse;
+          let count = 0;
+          for(let i = 0; i < progressArr.length; i++) {
+            if(progressArr[i].isAnswerCorrect ){
+              count++;
+            } if (count >= 3){
+              alert("you pass!")
+              break;
+            }
+          }
+         
+        })
+        
+      })
+    }
+  })
+}
 
- 
   function countDownTimer() {
     time --;
     timerEl.textContent= "Time: " + time;

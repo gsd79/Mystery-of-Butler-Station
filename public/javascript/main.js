@@ -652,10 +652,12 @@
   window.addEventListener("keydown", controller.keyUpDown);
   window.addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
+      
       validate(event);
     }
    
     async function validate(event) {
+      console.log(event);
       fetch("/api/questions/1").then((response) => {
         response.json().then((questions) => {
           const formatQuestions = questions.map((question) => {
@@ -666,32 +668,13 @@
           });
           //    timerId = setInterval(countDownTimer, 1000);
           //  countDownTimer();
+          // console.log(formatQuestions);
            getQuestion(formatQuestions);
         });
       });
-       fetch ('/api/progress', {
-        method: 'POST',
-        body: JSON.stringify({
-            user_id: req.session.user_id,
-            // level_id,
-            // question_id,
-            isAnswerCorrect: passAnswer,
-        }),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
+
+      
     
-      fetch("/api/progress/check").then((response) => {
-        response.json().then((progressResponse) => {
-          const progressArr = progressResponse;
-          if (progressArr.length === 1) {
-            alert("CORRECT!")
-            // next npc dialogue with hint
-            // logic to change the door to open
-          }
-        })
-      })
     }
 
   });
