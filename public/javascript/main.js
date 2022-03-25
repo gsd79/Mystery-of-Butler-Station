@@ -664,7 +664,6 @@
     var timerEl = document.getElementById("time");
     var choicesEl = document.getElementById("choices");
     var feedbackEl = document.getElementById("feedback");
-    var startBtn = document.getElementById("start");
     var timerEl = document.getElementById("timer");
     var time = 20;
     var timerId;
@@ -766,23 +765,23 @@
           });
         }
 
-        // function countDownTimer() {
-        //   time--;
-        //   timerEl.textContent = "Time: " + time;
-        //   // console.log(time);
+        function countDownTimer() {
+          time--;
+          timerEl.textContent = "Time: " + time;
+          // console.log(time);
 
-        //   if (time <= 0) {
-        //     quizEnd();
-        //   }
-        // }
+          if (time <= 0) {
+            quizEnd();
+          }
+        }
 
-        // function quizEnd() {
-        //   //clear screen
-        //   clearInterval(timerId);
-        //   //hide present question
-        //   var questionsEl = document.getElementById("quizScreen");
-        //   questionsEl.setAttribute("class", "hide");
-        // }
+        function quizEnd() {
+          //clear screen
+          clearInterval(timerId);
+          //hide present question
+          var questionsEl = document.getElementById("quizScreen");
+          questionsEl.setAttribute("class", "hide");
+        }
       });
     }
   });
