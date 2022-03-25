@@ -1,10 +1,9 @@
-//TODO CHANGE MAP FLOW 
+//TODO CHANGE MAP FLOW
 //TODO CHANGE DOORS TO 7 8 9
 //TODO set up Coordinate based enter Eventlistener
 //TODO list of second questions and 3rd questions
 
 // const { IncrementWrapStencilOp } = require("three");
-  
 (function () {
   "use strict";
 
@@ -38,9 +37,9 @@
           controller.enter = key_state;
           //console.log("enter key pressed");
           break;
-          // case click:
-          //   controller.mouse = key_state;
-          //   console.log('mouse clicked');
+        // case click:
+        //   controller.mouse = key_state;
+        //   console.log('mouse clicked');
       }
     },
   };
@@ -75,8 +74,6 @@
       // game.player.width,
       // game.player.height
 
-      
-
       this.buffer.fillStyle = game.player.color;
       this.buffer.fillRect(
         game.player.x,
@@ -84,7 +81,7 @@
         game.player.width,
         game.player.height
       );
-        //npc 1
+      //npc 1
       this.buffer.fillStyle = game.npc.color;
       this.buffer.fillRect(
         game.npc.x,
@@ -92,7 +89,7 @@
         game.npc.width,
         game.npc.height
       );
-//npc 2 
+      //npc 2
       this.buffer.fillStyle = game.npc_2.color;
       this.buffer.fillRect(
         game.npc_2.x,
@@ -101,7 +98,6 @@
         game.npc_2.height
       );
 
-      
       //draws NPC and player objects
       this.context.drawImage(
         this.buffer.canvas,
@@ -116,15 +112,15 @@
       );
       //draws map object
       this.context.drawImage(
-       this.buffer.canvas,
-      0,
-      0,
-      this.buffer.canvas.width,
-      this.buffer.canvas.height,
-       0,
-       0,
-      this.context.canvas.width,
-       this.context.canvas.height
+        this.buffer.canvas,
+        0,
+        0,
+        this.buffer.canvas.width,
+        this.buffer.canvas.height,
+        0,
+        0,
+        this.context.canvas.width,
+        this.context.canvas.height
       );
     },
 
@@ -152,8 +148,8 @@
       player: {
         color: "#ff9900",
         height: 10,
-        old_x: 160, 
-        old_y: 160, 
+        old_x: 160,
+        old_y: 160,
         velocity_x: 0,
         velocity_y: 0,
         width: 10,
@@ -190,8 +186,8 @@
       npc: {
         color: "#0000FF", //npc is blue
         height: 10,
-        old_x: 160, 
-        old_y: 160, 
+        old_x: 160,
+        old_y: 160,
         velocity_x: 0,
         velocity_y: 0,
         width: 10,
@@ -228,13 +224,13 @@
       npc_2: {
         color: "#ff0000", //npc_2 is red
         height: 10,
-        old_x: 160, 
-        old_y: 160, 
+        old_x: 160,
+        old_y: 160,
         velocity_x: 0,
         velocity_y: 0,
         width: 10,
-        x: 40 -16,
-        y: 170 -16,
+        x: 40 - 16,
+        y: 170 - 16,
 
         // These functions just make it easy to read the collision code
         get bottom() {
@@ -294,7 +290,6 @@
           0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
           0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
           4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,
-          
         ],
 
         // 1s are ceiling tiles
@@ -374,8 +369,6 @@
           }
           this.bottomCollision(object, row);
         },
-        
-        
 
         leftCollision(object, column) {
           if (object.x - object.old_x > 0) {
@@ -392,8 +385,6 @@
 
           return false;
         },
-
-        
 
         rightCollision(object, column) {
           if (object.x - object.old_x < 0) {
@@ -559,10 +550,7 @@
           if (value_at_index != 0) {
             // Check the top right point
 
-            game.collision[value_at_index](
-              game.player, 
-              top_row, 
-              right_column);
+            game.collision[value_at_index](game.player, top_row, right_column);
             // display.output.innerHTML =
             //   "last tile collided with: " + value_at_index;
           }
@@ -645,17 +633,14 @@
 
   display.buffer.canvas.height = 300;
   display.buffer.canvas.width = 420;
-    
- 
 
   window.addEventListener("resize", display.resize);
   window.addEventListener("keydown", controller.keyUpDown);
   window.addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
-      
       validate(event);
     }
-   
+
     async function validate(event) {
       console.log(event);
       fetch("/api/questions/1").then((response) => {
@@ -669,19 +654,138 @@
           //    timerId = setInterval(countDownTimer, 1000);
           //  countDownTimer();
           // console.log(formatQuestions);
-           getQuestion(formatQuestions);
+          getQuestion(formatQuestions);
         });
       });
-
-      
-    
     }
 
+    let currentQuestionIndex = 0;
+    var questionsEl = document.getElementById("questions");
+    var timerEl = document.getElementById("time");
+    var choicesEl = document.getElementById("choices");
+    var feedbackEl = document.getElementById("feedback");
+    var startBtn = document.getElementById("start");
+    var timerEl = document.getElementById("timer");
+    var time = 20;
+    var timerId;
+    const map = game.world.map;
+    function getQuestion(questions) {
+      let currentQuestion = questions[currentQuestionIndex];
+
+      let questionTitleElement = document.querySelector("#question-title");
+
+      questionTitleElement.textContent = currentQuestion.question;
+
+      // clear out any old question choices
+      choicesEl.textContent = "";
+      // choicesEl.innerHTML = "";
+
+      currentQuestion.choices.forEach((element, index) => {
+        //console.log("element", element);
+        var choiceNode = document.createElement("button");
+        choiceNode.setAttribute("class", "choice");
+        //choiceNode.setAttribute("value", element);
+        choiceNode.textContent = index + 1 + ". " + element;
+
+        choiceNode.addEventListener("click", function () {
+          questionClick(questions, element);
+        });
+
+        choicesEl.appendChild(choiceNode);
+        //console.log("choiceNode", choiceNode)
+      });
+    }
+
+    function questionClick(quizQuestions, answer) {
+      let isAnswerCorrect = false;
+      if (answer !== quizQuestions[currentQuestionIndex].answer) {
+        //displays right or wrong answer
+        feedbackEl.textContent = "Wrong";
+      } else {
+        feedbackEl.textContent = "Correct";
+        isAnswerCorrect = true;
+      }
+
+      saveProgress(quizQuestions[currentQuestionIndex].id, isAnswerCorrect);
+
+      feedbackEl.removeAttribute("class");
+
+      // move to next question
+      currentQuestionIndex++;
+
+      // check if we've run out of questions
+      if (currentQuestionIndex === quizQuestions.length) {
+        quizEnd();
+        //alert("Quiz is over");
+      } else {
+        getQuestion(quizQuestions);
+        return isAnswerCorrect;
+      }
+      //store correct answers
+    }
+    async function saveProgress(question_id, isAnswerCorrect) {
+      // const user_id = req.session.user_id;
+      fetch("/api/progress", {
+        method: "POST",
+        body: JSON.stringify({
+          user_id: 3,
+          level_id: 1,
+          question_id,
+          isAnswerCorrect,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }).then((response) => {
+        if (response.ok) {
+          fetch("/api/progress/check").then((response) => {
+            response.json().then((progressResponse) => {
+              const progressArr = progressResponse;
+              let count = 0;
+              for (let i = 0; i < progressArr.length; i++) {
+                if (progressArr[i].isAnswerCorrect) {
+                  count++;
+                }
+                if (count >= 3) {
+                  alert("you pass!");
+                  floorTile();
+                  
+                  function floorTile() {
+                    const index = map.indexOf(9);
+                    if (index > -1) {
+                     map.splice(index,2, 0, 0)
+                    }
+                    // mapindexOf(9) = (game.world.map[toIndex(4,7)] ==9 ? 0:9);
+                     console.log("game tile", map.indexOf(9));
+                  }
+                  console.log(map);
+                  break;
+                }
+              }
+            });
+          });
+        }
+
+        // function countDownTimer() {
+        //   time--;
+        //   timerEl.textContent = "Time: " + time;
+        //   // console.log(time);
+
+        //   if (time <= 0) {
+        //     quizEnd();
+        //   }
+        // }
+
+        // function quizEnd() {
+        //   //clear screen
+        //   clearInterval(timerId);
+        //   //hide present question
+        //   var questionsEl = document.getElementById("quizScreen");
+        //   questionsEl.setAttribute("class", "hide");
+        // }
+      });
+    }
   });
- 
-
-
-
 
   window.addEventListener("keyup", controller.keyUpDown);
 
