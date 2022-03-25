@@ -38,25 +38,8 @@ input[type="text"] {
   font-size: 100%;
 }
 
-ol {
-  padding-left: 0px;
-  max-height: 400px;
-  overflow: auto;
-}
 
-li {
-  padding: 5px;
-  list-style: decimal inside none;
-}
 
-li:nth-child(odd) {
-  background-color: #f3edfc;
-}
-
-.wrapper {
-  margin: 100px auto 0 auto;
-  max-width: 600px;
-}
 
 .hide {
   display: none;
@@ -74,10 +57,3 @@ li:nth-child(odd) {
   border-top: 2px solid #ccc;
 }
 
-#timer{
-font-size: 120%;
-margin-top: 20px;
-padding-top: 10px;
-color: gray;
-border-top: 2px solid #ccc;
-}
