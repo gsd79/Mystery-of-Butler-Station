@@ -1,0 +1,14 @@
+canvas {
+    margin: 0 auto;
+}
+
+
+body {
+
+    background-image: url(../images/image-from-rawpixel-id-2363304-original.jpg);
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
