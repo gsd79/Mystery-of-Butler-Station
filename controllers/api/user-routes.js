@@ -63,9 +63,10 @@ router.get('/', (req, res) => {
     });
 });
 
-// TODO: WHEN PLAYER CHOOSES POST WHICH CHARACTER TO CHARACTER MODEL -- LINKED TO USER
+// WHEN PLAYER CHOOSES POST WHICH CHARACTER TO CHARACTER MODEL -- LINKED TO USER
 
-router.post('/select-character', withAuth, (req, res) => {
+router.post('/character-selection', (req, res) => {
+  //TODO check the session
     User.update(
       {
       character_id: req.body.character_id,
@@ -91,27 +92,5 @@ router.post('/select-character', withAuth, (req, res) => {
       });
   // }
 });
-
-// TODO: PUT ROUTE TO NEW GAME/RESET PROGRESS MODEL?
-// router.post('/', (req, res) => {
-//     // expects {username: 'Lernantino', email: 'lernantino@gmail.com', password: 'password1234'}
-//     User.create({
-//       username: req.body.username,
-//       email: req.body.email,
-//       password: req.body.password
-//     })
-//       .then(dbUserData => {
-//         req.session.save(() => {
-//           req.session.user_id = dbUserData.id;
-//           req.session.username = dbUserData.username;
-//           req.session.loggedIn = true;
-//           res.json(dbUserData);
-//         });
-//       })
-//       .catch(err => {
-//         console.log(err);
-//         res.status(500).json(err);
-//       });
-//   });
 
 module.exports = router;

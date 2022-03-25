@@ -1,27 +1,41 @@
-<div class = "container" style="display:flex">
-  <canvas></canvas>
 
-  <div id="quizScreen" >
-      <h1>Questions</h1>
-      <!--loop through questions array here-->
-        <h2 id="question-title"></h2>
-        <div id="choices" class="choices"></div>
-      
-        
-    <div id="feedback" class="feedback hide"></div>
-    <div id="timer"></div>
-  </div>
-      
-    
+
+
+  <link rel="stylesheet" href="./stylesheets/style.css" />
+  <link rel="stylesheet" href="./stylesheets/game.css" />
+
+
+<div class="title">
+  <h1>Welcome to Butler Station!</h1>
+    <ul>Instructions:
+      <li>Use WASD to move your character around the station</li>
+      <li>Talk with your Crew mates to answer questions for clues and keys</li>
+      <li>Use keys to open doors</li>
 </div>
-    
-   
+<div class="container"  id="timer">jkhvkjhg
+  <div id="feedback" class="feedback hide"></div>
+  </div>
+  
+  <div class="flex-container">
+    <div><canvas width="400" height="400" style="display: center"></canvas></div>
+  <div>
+    <h1>Questions</h1>
+  @@ -12,6 +13,7 @@
+  </div>
+  </div>
+  
+  
 
-      
-<h1>Welcome to Butler Station!</h1>
-<ul>Instructions:
-  <li>Use WASD to move your character around the station</li>
-  <li>Talk with your Crew mates to answer questions for clues and keys</li>
-  <li>Use keys to open doors</li>
+  
+  
+    
+  
+
+  
+
+    
+
+
+
 <script src = "/javascript/main.js" type = "text/javascript"></script>
 {{!-- <script src = "/javascript/quiz.js" type = "text/javascript"></script> --}}
