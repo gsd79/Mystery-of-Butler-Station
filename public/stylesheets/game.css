@@ -64,6 +64,19 @@ div.oo {width: 225px; height: 400px;
     margin: 0 auto;
 }
 
+<<<<<<< HEAD
+.title h1{
+    font-family: arial;
+    position: relative;
+    color: #fff;
+    text-align: center;
+    font-size: 5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+=======
+>>>>>>> b080bf1980a32d0763339af42502efd98f961669
 .title::before,
 .title::after {
     content: attr(data-text);
