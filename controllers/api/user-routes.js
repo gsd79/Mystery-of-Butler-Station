@@ -27,13 +27,13 @@ router.post('/login', (req, res) => {
     where: {
       email: req.body.email
     }
-  }).then(userLogIn => {
-    if (!userLogIn) {
+  }).then(userData => {
+    if (!userData) {
       res.status(400).json({ message: 'No user with that email address!' });
       return;
     }
 
-    const validPassword = userLogIn.checkPassword(req.body.password);
+    const validPassword = userData.checkPassword(req.body.password);
 
     if (!validPassword) {
       res.status(400).json({ message: 'Incorrect password!' });
@@ -41,12 +41,13 @@ router.post('/login', (req, res) => {
     }
 // TODO: ask matt about res.json
     req.session.save(() => {
-      req.session.user_id = userLogIn.id;
-      req.session.email = userLogIn.email;
-      req.session.loggedIn= true;
-      res.json({ user: userLogIn, message: 'You are now logged in!' });
-    })
-
+      req.session.user_id = userData.id //TODO this needs to be +1;
+      req.session.email = userData.email;
+      req.session.loggedIn = true;
+      res.json({ user: userData, message: 'You are now logged in!' }
+      );
+    });
+    console.log(req.session.user_id) //this will show user id of whoever is logging in
   });
 });
 
@@ -91,27 +92,5 @@ router.post('/character-selection', (req, res) => {
       });
   // }
 });
-
-// TODO: PUT ROUTE TO NEW GAME/RESET PROGRESS MODEL?
-// router.post('/', (req, res) => {
-//     // expects {username: 'Lernantino', email: 'lernantino@gmail.com', password: 'password1234'}
-//     User.create({
-//       username: req.body.username,
-//       email: req.body.email,
-//       password: req.body.password
-//     })
-//       .then(dbUserData => {
-//         req.session.save(() => {
-//           req.session.user_id = dbUserData.id;
-//           req.session.username = dbUserData.username;
-//           req.session.loggedIn = true;
-//           res.json(dbUserData);
-//         });
-//       })
-//       .catch(err => {
-//         console.log(err);
-//         res.status(500).json(err);
-//       });
-//   });
 
 module.exports = router;

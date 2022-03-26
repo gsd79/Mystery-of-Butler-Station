@@ -19,20 +19,20 @@ Progress.init(
         key: 'id'
       }
     },
-    level_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'level',
-        key: 'id'
-      }
-    },
-    question_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'questions',
-        key: 'id'
-      }
-    },
+    // level_id: {
+    //   type: DataTypes.INTEGER,
+    //   references: {
+    //     model: 'level',
+    //     key: 'id'
+    //   }
+    // },
+    // question_id: {
+    //   type: DataTypes.INTEGER,
+    //   references: {
+    //     model: 'questions',
+    //     key: 'id'
+    //   }
+    // },
     isAnswerCorrect: {
       type: DataTypes.BOOLEAN,
       allowNull: false

@@ -1,6 +1,4 @@
-
-
-async function newSignUp () {
+async function newSignUp (event) {
     event.preventDefault();
 
     const email = document.querySelector('#email-sign-up').value.trim();
