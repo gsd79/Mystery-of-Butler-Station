@@ -4,7 +4,7 @@ html{
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-     overflow: auto;
+    overflow: auto;
 }
 
 canvas {
@@ -39,12 +39,7 @@ h1 {
   font-size: 30px;
 }
 
-div.oo {width: 225px; height: 400px;
-  background-image: url(https://estelle.github.io/10/files/sprite.png);
-  animation: gangham 4s steps(23,start) infinite,
-    movearound 12s steps(69,end) infinite alternate 44ms;
-  animation-direction: normal, alternate;
-}
+
 @keyframes gangham {
   0% {background-position: 0 0}
   100% {background-position: -5175px 0}
@@ -64,7 +59,6 @@ div.oo {width: 225px; height: 400px;
     margin: 0 auto;
 }
 
-<<<<<<< HEAD
 .title h1{
     font-family: arial;
     position: relative;
@@ -75,8 +69,6 @@ div.oo {width: 225px; height: 400px;
     margin: 0 auto;
 }
 
-=======
->>>>>>> b080bf1980a32d0763339af42502efd98f961669
 .title::before,
 .title::after {
     content: attr(data-text);
