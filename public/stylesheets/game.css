@@ -5,6 +5,7 @@ html{
     background-repeat: no-repeat;
     background-size: cover;
     overflow: auto;
+    color: #fff;
 }
 
 canvas {

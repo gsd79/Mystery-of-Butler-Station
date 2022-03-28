@@ -59,16 +59,18 @@ body {
     padding-top: 100px;
 }
 
-login-form-field {
+.login-form-field {
     color: #3a333a;
 
 }
 
-login-form-field {
+.login-form-field {
     border: none;
     border-bottom: 1px solid #3a333a;
     margin-bottom: 10px;
     border-radius: 3px;
+    width: 200px;
+    height: 20px;
     outline: none;
     padding: 0px 0px 5px 5px;
 }
@@ -90,7 +92,7 @@ login-form-field {
     position: relative;
     color: #fff;
     text-align: center;
-    font-size: 7rem;
+    font-size: 5em;    
     max-width: 1200px;
     margin: 0 auto;
 }
