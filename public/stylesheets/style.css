@@ -50,10 +50,19 @@ input[type="text"] {
 } */
 #feedback {
   font-style: italic;
-  font-size: 120%;
+  font-size: 140%;
   margin-top: 20px;
   padding-top: 10px;
-  color: gray;
+  color: white;
+  border-top: 2px solid #ccc;
+}
+
+#quizfeedback {
+  font-style: italic;
+  font-size: 140%;
+  margin-top: 20px;
+  padding-top: 10px;
+  color: white;
   border-top: 2px solid #ccc;
 }
 
