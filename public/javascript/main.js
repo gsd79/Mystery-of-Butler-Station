@@ -726,9 +726,8 @@
       fetch("/api/progress", {
         method: "POST",
         body: JSON.stringify({
-          level_id: 1,
           question_id,
-          isAnswerCorrect,
+          isAnswerCorrect
         }),
         headers: {
           "Content-Type": "application/json",

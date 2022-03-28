@@ -45,9 +45,9 @@ router.post('/login', (req, res) => {
       req.session.email = userData.email;
       req.session.loggedIn = true;
       res.json({ user: userData, message: 'You are now logged in!' }
-      );
+      );console.log(req.session.user_id) 
     });
-    console.log(req.session.user_id) //this will show user id of whoever is logging in
+    //this will show user id of whoever is logging in
   });
 });
 
