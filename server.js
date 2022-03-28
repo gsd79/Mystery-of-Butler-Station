@@ -6,7 +6,7 @@ const exphbs = require('express-handlebars');
 const helpers = require('./utils/helpers');
 const hbs = exphbs.create({ helpers });
 const session = require('express-session');
-// const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const cors = require('cors');
 
 const sess = {
@@ -14,6 +14,9 @@ const sess = {
   cookie: {},
   resave: false,
   saveUninitialized: true,
+  store: new SequelizeStore({
+    db: sequelize
+  })
 };
 
 const app = express();

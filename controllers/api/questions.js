@@ -3,16 +3,16 @@ const { Questions } = require('../../models');
 const withAuth = require('../../utils/auth'); //TODO add for production turn in
 
 //GET ROUTE TO GENERATE QUESTION, STORED IN VARIABLES 
-// router.get('/', (req, res) => {
-//   Questions.findAll({
+router.get('/', withAuth, (req, res) => {
+  Questions.findAll({
     
-//   })
-//     .then(dbQuestionData => res.json(dbQuestionData))
-//     .catch(err => {
-//       console.log(err);
-//       res.status(500).json(err);
-//     });
-// });
+  })
+    .then(dbQuestionData => res.json(dbQuestionData))
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
 
 //get question by id
 router.get('/:id', withAuth, (req, res) => {
