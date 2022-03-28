@@ -45,27 +45,25 @@ router.post('/login', (req, res) => {
       req.session.email = userData.email;
       req.session.loggedIn = true;
       res.json({ user: userData, message: 'You are now logged in!' }
-      );
+      );console.log(req.session.user_id) 
     });
-    console.log(req.session.user_id) //this will show user id of whoever is logging in
+    //this will show user id of whoever is logging in
   });
 });
 
 //GET all users
-router.get('/', (req, res) => {
-  User.findAll({
+// router.get('/', (req, res) => {
+//   User.findAll({
     
-  })
-    .then(dbUserData => res.json(dbUserData))
-    .catch(err => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-});
+//   })
+//     .then(dbUserData => res.json(dbUserData))
+//     .catch(err => {
+//       console.log(err);
+//       res.status(500).json(err);
+//     });
+// });
 
-// WHEN PLAYER CHOOSES POST WHICH CHARACTER TO CHARACTER MODEL -- LINKED TO USER
-
-router.post('/character-selection', (req, res) => {
+router.post('/character-selection', withAuth, (req, res) => {
   //TODO check the session
     User.update(
       {

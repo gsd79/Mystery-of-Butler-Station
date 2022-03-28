@@ -5,8 +5,8 @@ const seedQuestions = require('./questions-seeds');
 const seedBackpack = require('./backpack-seeds');
 const seedCharacter = require('./character-seeds');
 const seedLeaderboard = require('./leaderboard-seeds');
-const seedProgress = require('./progress-seeds');
-const seedUser = require('./user-seeds');
+// const seedProgress = require('./progress-seeds');
+// const seedUser = require('./user-seeds');
 
 const sequelize = require('../config/connection');
 
@@ -26,8 +26,8 @@ const seedAll = async () => {
   await seedCharacter();
   console.log('\n----- CHARACTERS SEEDED -----\n');
 
-  await seedUser();
-  console.log('\n----- USERS SEEDED -----\n');
+  // await seedUser();
+  // console.log('\n----- USERS SEEDED -----\n');
 
   await seedBackpack();
   console.log('\n----- BACKPACK SEEDED -----\n');
@@ -35,8 +35,8 @@ const seedAll = async () => {
   await seedLeaderboard();
   console.log('\n----- LEADERBOARD SEEDED -----\n');
 
-  await seedProgress();
-  console.log('\n----- PROGRESS SEEDED -----\n');
+  // await seedProgress();
+  // console.log('\n----- PROGRESS SEEDED -----\n');
 
   process.exit(0);
 };

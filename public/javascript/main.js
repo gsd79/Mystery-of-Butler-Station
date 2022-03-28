@@ -636,6 +636,17 @@
 
   window.addEventListener("resize", display.resize);
   window.addEventListener("keydown", controller.keyUpDown);
+
+  let currentQuestionIndex = 0;
+    var questionsEl = document.getElementById("questions");
+    var timerEl = document.getElementById("time");
+    var choicesEl = document.getElementById("choices");
+    var feedbackEl = document.getElementById("feedback");
+    var timerEl = document.getElementById("time");
+
+    var time = 45;
+    var timerId;
+
   window.addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
       validate(event);
@@ -651,22 +662,24 @@
               choices: question.choices.split(",").map((c) => c.trim()),
             };
           });
-          //    timerId = setInterval(countDownTimer, 1000);
-          //  countDownTimer();
+             timerId = setInterval(countDownTimer, 1000);
+           countDownTimer();
           // console.log(formatQuestions);
           getQuestion(formatQuestions);
         });
       });
+      function countDownTimer() {
+        time--;
+        timerEl.textContent = "Time: " + time;
+        // console.log(time);
+
+        if (time <= 0) {
+          quizEnd();
+        }
+      }
     }
 
-    let currentQuestionIndex = 0;
-    var questionsEl = document.getElementById("questions");
-    var timerEl = document.getElementById("time");
-    var choicesEl = document.getElementById("choices");
-    var feedbackEl = document.getElementById("feedback");
-    var timerEl = document.getElementById("timer");
-    var time = 20;
-    var timerId;
+    
     const map = game.world.map;
     function getQuestion(questions) {
       let currentQuestion = questions[currentQuestionIndex];
@@ -700,7 +713,11 @@
       if (answer !== quizQuestions[currentQuestionIndex].answer) {
         //displays right or wrong answer
         feedbackEl.textContent = "Wrong";
-      } else {
+        time -= 10;
+
+        timerEl.textContent = time;
+      }
+       else {
         feedbackEl.textContent = "Correct";
         isAnswerCorrect = true;
       }
@@ -723,14 +740,11 @@
       //store correct answers
     }
     async function saveProgress(question_id, isAnswerCorrect) {
-      // const user_id = req.session.user_id;
       fetch("/api/progress", {
         method: "POST",
         body: JSON.stringify({
-          user_id: 3,
-          level_id: 1,
           question_id,
-          isAnswerCorrect,
+          isAnswerCorrect
         }),
         headers: {
           "Content-Type": "application/json",
@@ -746,13 +760,18 @@
                   count++;
                 }
                 if (count >= 3) {
-                  alert("you pass!");
                   floorTile();
-                  
+    
                   function floorTile() {
+                   
                     const index = map.indexOf(9);
                     if (index > -1) {
-                     map.splice(index,2, 0, 0)
+                     map.splice(index,2, 0, 0);
+                    }
+                    if (index === -1) {
+                      
+                      feedbackEl.textContent = "You win! Version 2.0 coming soon!";
+                      quizEnd();
                     }
                     // mapindexOf(9) = (game.world.map[toIndex(4,7)] ==9 ? 0:9);
                      console.log("game tile", map.indexOf(9));
@@ -764,25 +783,16 @@
             });
           });
         }
-
-        function countDownTimer() {
-          time--;
-          timerEl.textContent = "Time: " + time;
-          // console.log(time);
-
-          if (time <= 0) {
-            quizEnd();
-          }
-        }
-
-        function quizEnd() {
-          //clear screen
-          clearInterval(timerId);
-          //hide present question
-          var questionsEl = document.getElementById("quizScreen");
-          questionsEl.setAttribute("class", "hide");
-        }
       });
+    }
+    function quizEnd() {
+      //clear screen
+      
+      clearInterval(timerId);
+      //hide present question
+      var questionsEl = document.getElementById("quizScreen");
+      questionsEl.setAttribute("class", "hide");
+      console.log("quiz is over");
     }
   });
 

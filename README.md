@@ -4,6 +4,16 @@
   ## Description
   Test your knowledge of space-themed trivia in order to solve the mystery of Butler space station. 
 
+  ## Live Links
+   * https://github.com/gsd79/Mystery-of-Butler-Station
+   * (heroku)
+
+   ## Game Functionality Example:
+   ![Log In Page](https://i.postimg.cc/NB57ZLdM/ezgif-com-gif-maker-2022-03-28-T154906-299.gif)
+
+   ![Signup Page](https://i.postimg.cc/FmPVP0g8/ezgif-com-gif-maker-2022-03-28-T155039-831.gif)
+
+
   ## Table of Contents
   * [Installation Guide](#installation-guidelines)
   * [Usage Guide](#usage-guidelines)

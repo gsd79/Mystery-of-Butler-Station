@@ -60,16 +60,6 @@ h1 {
     margin: 0 auto;
 }
 
-.title h1{
-    font-family: arial;
-    position: relative;
-    color: #fff;
-    text-align: center;
-    font-size: 5rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
 .title::before,
 .title::after {
     content: attr(data-text);
