@@ -723,11 +723,9 @@
       //store correct answers
     }
     async function saveProgress(question_id, isAnswerCorrect) {
-      // const user_id = req.session.user_id;
       fetch("/api/progress", {
         method: "POST",
         body: JSON.stringify({
-          user_id: 3,
           level_id: 1,
           question_id,
           isAnswerCorrect,

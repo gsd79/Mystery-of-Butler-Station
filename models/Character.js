@@ -1,4 +1,3 @@
-//four characters. when pick. update user_character_id
 const { Model, DataTypes } = require('sequelize');
 
 const sequelize = require('../config/connection');
