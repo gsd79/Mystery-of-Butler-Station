@@ -1,4 +1,3 @@
-// import all models
 const Categories = require('./Categories');
 const Leaderboard = require('./Leaderboard');
 const Level = require('./Level');
@@ -9,7 +8,7 @@ const User = require('./User');
 const Backpack = require('./Backpack');
 const Character = require('./Character')
 
-// associations
+// Associations
 
 Backpack.belongsTo(User,{
   foreignKey: 'user_id'
