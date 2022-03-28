@@ -643,7 +643,8 @@
     var choicesEl = document.getElementById("choices");
     var feedbackEl = document.getElementById("feedback");
     var timerEl = document.getElementById("time");
-    var time = 20;
+
+    var time = 45;
     var timerId;
 
   window.addEventListener("keydown", function (event) {
@@ -675,25 +676,6 @@
         if (time <= 0) {
           quizEnd();
         }
-      }
-
-      function quizEnd() {
-        //clear screen
-        clearInterval(timerId);
-        var modal = document.getElementById("modal");
-          modal.style.display = "block";
-        
-        window.onclick(event) {
-          if (event.target == modal) {
-            modal.style.display = "none";
-          }
-          quizEndModal()
-        }
-      }
-    
-        //hide present question
-        var questionsEl = document.getElementById("quizScreen");
-        questionsEl.setAttribute("class", "hide");
       }
     }
 
@@ -731,7 +713,11 @@
       if (answer !== quizQuestions[currentQuestionIndex].answer) {
         //displays right or wrong answer
         feedbackEl.textContent = "Wrong";
-      } else {
+        time -= 10;
+
+        timerEl.textContent = time;
+      }
+       else {
         feedbackEl.textContent = "Correct";
         isAnswerCorrect = true;
       }
@@ -774,14 +760,18 @@
                   count++;
                 }
                 if (count >= 3) {
-                  alert("you pass!");
                   floorTile();
-                  quizEnd();
-                  
+    
                   function floorTile() {
+                   
                     const index = map.indexOf(9);
                     if (index > -1) {
-                     map.splice(index,2, 0, 0)
+                     map.splice(index,2, 0, 0);
+                    }
+                    if (index === -1) {
+                      
+                      feedbackEl.textContent = "You win! Version 2.0 coming soon!";
+                      quizEnd();
                     }
                     // mapindexOf(9) = (game.world.map[toIndex(4,7)] ==9 ? 0:9);
                      console.log("game tile", map.indexOf(9));
@@ -794,6 +784,15 @@
           });
         }
       });
+    }
+    function quizEnd() {
+      //clear screen
+      
+      clearInterval(timerId);
+      //hide present question
+      var questionsEl = document.getElementById("quizScreen");
+      questionsEl.setAttribute("class", "hide");
+      console.log("quiz is over");
     }
   });
 
