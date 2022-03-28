@@ -6,8 +6,8 @@
 
   ## Live Links
    * https://github.com/gsd79/Mystery-of-Butler-Station
-   * (heroku)
-
+   * https://mystery-of-butler-station.herokuapp.com/
+   
    ## Game Functionality Example:
    ![Log In Page](https://i.postimg.cc/NB57ZLdM/ezgif-com-gif-maker-2022-03-28-T154906-299.gif)
 
@@ -39,7 +39,7 @@
   Application does not have integrated testing package but unit testing is recommended using Jest. 
 
   ## Authors
-    * Daniel Zimmerman
+    * Daniel Zimmermann
     * Grace Dringenburg
     * Mark Flemming
     * Mitch McKinney
