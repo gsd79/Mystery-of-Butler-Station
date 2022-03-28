@@ -636,6 +636,16 @@
 
   window.addEventListener("resize", display.resize);
   window.addEventListener("keydown", controller.keyUpDown);
+
+  let currentQuestionIndex = 0;
+    var questionsEl = document.getElementById("questions");
+    var timerEl = document.getElementById("time");
+    var choicesEl = document.getElementById("choices");
+    var feedbackEl = document.getElementById("feedback");
+    var timerEl = document.getElementById("time");
+    var time = 20;
+    var timerId;
+
   window.addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
       validate(event);
@@ -651,22 +661,43 @@
               choices: question.choices.split(",").map((c) => c.trim()),
             };
           });
-          //    timerId = setInterval(countDownTimer, 1000);
-          //  countDownTimer();
+             timerId = setInterval(countDownTimer, 1000);
+           countDownTimer();
           // console.log(formatQuestions);
           getQuestion(formatQuestions);
         });
       });
+      function countDownTimer() {
+        time--;
+        timerEl.textContent = "Time: " + time;
+        // console.log(time);
+
+        if (time <= 0) {
+          quizEnd();
+        }
+      }
+
+      function quizEnd() {
+        //clear screen
+        clearInterval(timerId);
+        var modal = document.getElementById("modal");
+          modal.style.display = "block";
+        
+        window.onclick(event) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+          quizEndModal()
+        }
+      }
+    
+        //hide present question
+        var questionsEl = document.getElementById("quizScreen");
+        questionsEl.setAttribute("class", "hide");
+      }
     }
 
-    let currentQuestionIndex = 0;
-    var questionsEl = document.getElementById("questions");
-    var timerEl = document.getElementById("time");
-    var choicesEl = document.getElementById("choices");
-    var feedbackEl = document.getElementById("feedback");
-    var timerEl = document.getElementById("timer");
-    var time = 20;
-    var timerId;
+    
     const map = game.world.map;
     function getQuestion(questions) {
       let currentQuestion = questions[currentQuestionIndex];
@@ -727,7 +758,6 @@
       fetch("/api/progress", {
         method: "POST",
         body: JSON.stringify({
-          user_id: 3,
           level_id: 1,
           question_id,
           isAnswerCorrect,
@@ -748,6 +778,7 @@
                 if (count >= 3) {
                   alert("you pass!");
                   floorTile();
+                  quizEnd();
                   
                   function floorTile() {
                     const index = map.indexOf(9);
@@ -763,24 +794,6 @@
               }
             });
           });
-        }
-
-        function countDownTimer() {
-          time--;
-          timerEl.textContent = "Time: " + time;
-          // console.log(time);
-
-          if (time <= 0) {
-            quizEnd();
-          }
-        }
-
-        function quizEnd() {
-          //clear screen
-          clearInterval(timerId);
-          //hide present question
-          var questionsEl = document.getElementById("quizScreen");
-          questionsEl.setAttribute("class", "hide");
         }
       });
     }
